@@ -33,6 +33,7 @@ $GLOBALS['TL_LANG']['MOD']['gewinnspiel']['0'] = "Gewinnspiel";
 $GLOBALS['TL_LANG']['MOD']['gewinnspiel']['1'] = "Gewinnspiel-Modul";
 $GLOBALS['TL_LANG']['MOD']['tl_gewinnspiel_preise']['0'] = "Tabelle Preise";
 $GLOBALS['TL_LANG']['MOD']['tl_gewinnspiel_codes']['0'] = "Tabelle Gewinncodes";
+$GLOBALS['TL_LANG']['MOD']['generate_codes']['0'] = "Codes generieren";
 
 // frontend module
 $GLOBALS['TL_LANG']['FMD']['gewinnspiele'] = "Gewinnspiele";
