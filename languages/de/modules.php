@@ -37,8 +37,8 @@ $GLOBALS['TL_LANG']['MOD']['generate_codes']['0'] = "Codes generieren";
 
 // frontend module
 $GLOBALS['TL_LANG']['FMD']['gewinnspiele'] = "Gewinnspiele";
-$GLOBALS['TL_LANG']['FMD']['gewinnspiel']['0'] = "Gewinnspiel-Modul";
-$GLOBALS['TL_LANG']['FMD']['gewinnspiel']['1'] = "Bauen Sie ein Gewinnspiel-Modul auf Ihrer Seite ein.";
-$GLOBALS['TL_LANG']['FMD']['gewinnspiel_gewinn_abbuchen']['0'] = "Gewinnspiel - Gewinn abbuchen (Modul für Verkaufspersonal)";
-$GLOBALS['TL_LANG']['FMD']['gewinnspiel_gewinn_abbuchen']['1'] = "Gewinnspielteilnehmer zeigt im Laden sein Gewinnzertifikat und lässt dieses durch das Verkaufspersonal abbuchen.";
+$GLOBALS['TL_LANG']['FMD']['gewinnspiel_teilnehmer']['0'] = "Gewinnspiel-Teilnehmer-Modul";
+$GLOBALS['TL_LANG']['FMD']['gewinnspiel_teilnehmer']['1'] = "Bauen Sie ein Gewinnspiel-Modul auf Ihrer Seite ein.";
+$GLOBALS['TL_LANG']['FMD']['gewinnspiel_verkaufspersonal']['0'] = "Gewinnspiel-Verkaufspersonal-Modul";
+$GLOBALS['TL_LANG']['FMD']['gewinnspiel_verkaufspersonal']['1'] = "Gewinnspielteilnehmer zeigt im Laden sein Gewinnzertifikat und lässt dieses durch das Verkaufspersonal abbuchen.";
 

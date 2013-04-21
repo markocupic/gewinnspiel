@@ -247,8 +247,8 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                      $this->userData['memberId'] = $objMember->id;
               }
 
-              // add member to tl_avisota_recipient
-              if ($this->addUserToAvisotaRecipientList)
+              // add member to tl_avisota_recipient, but only if avisota is installed
+              if (in_array('tl_avisota_recipient_list', $this->Database->listTables()) && $this->addUserToAvisotaRecipientList)
               {
                      $objDb = $this->Database->prepare('SELECT * FROM tl_avisota_recipient_list WHERE id = ?')->execute($this->addUserToAvisotaRecipientList);
                      if ($objDb->first())

@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php if (!defined('TL_ROOT'))
+       die('You can not access this file directly!');
 
 /**
  * Contao Open Source CMS
@@ -30,42 +31,41 @@
 /**
  * Add palettes to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['gewinnspiel'] = '{title_legend},name,headline,type;{config_legend},addUserToAvisotaRecipientList,senderEmail,prizeImagesFolder,validUntil,tableless;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['gewinnspiel_gewinn_abbuchen'] = '{title_legend},name,headline,type;{config_legend},tableless,prizeImagesFolder;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['gewinnspiel_teilnehmer'] = '{title_legend},name,headline,type;{form_layout},tableless;{config_legend},addUserToAvisotaRecipientList,senderEmail,prizeImagesFolder,validUntil;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['gewinnspiel_verkaufspersonal'] = '{title_legend},name,headline,type;{form_layout},tableless;{config_legend},prizeImagesFolder;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 /**
  * Add fields to tl_module
  */
 
+
+
 $GLOBALS['TL_DCA']['tl_module']['fields']['addUserToAvisotaRecipientList'] = array(
-	'label' => &$GLOBALS['TL_LANG']['tl_module']['addUserToAvisotaRecipientList'],
-	'inputType' => 'select',
+       'label' => &$GLOBALS['TL_LANG']['tl_module']['addUserToAvisotaRecipientList'],
+       'inputType' => 'select',
        'legend' => 'tl_avisota_recipient_list.title',
        'foreignKey' => 'tl_avisota_recipient_list.id',
-	'options_callback' => array('mod_gewinnspiel', 'getAvisotaVerteiler'),
-	'eval' => array('includeBlankOption' => true, 'mandatory' => false, 'class' => '')
+       'options_callback' => array('mod_gewinnspiel', 'getAvisotaVerteiler'),
+       'eval' => array('includeBlankOption' => true, 'mandatory' => false, 'class' => 'long clr')
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['senderEmail'] = array(
        'label' => &$GLOBALS['TL_LANG']['tl_module']['senderEmail'],
        'inputType' => 'text',
-       'eval' => array('mandatory' => true, 'rgxp' => 'email', 'class' => '')
+       'eval' => array('mandatory' => true, 'rgxp' => 'email', 'class' => 'long clr')
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['prizeImagesFolder'] = array(
        'label' => &$GLOBALS['TL_LANG']['tl_module']['prizeImagesFolder'],
        'inputType' => 'fileTree',
-       'eval' => array('fieldType'=>'radio','mandatory' => true, 'files' => false,'filesOnly' =>false, 'class' => '')
+       'eval' => array('fieldType' => 'radio', 'mandatory' => true, 'files' => false, 'filesOnly' => false, 'class' => 'long clr')
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['validUntil'] = array(
        'label' => &$GLOBALS['TL_LANG']['tl_module']['validUntil'],
        'inputType' => 'text',
-       'eval' => array('mandatory' => true, 'rgxp' => 'digit', 'class' => '')
+       'eval' => array('mandatory' => true, 'rgxp' => 'digit', 'class' => 'long clr')
 );
-
-
-
 
 /**
  * Class mod_gallery_creator
@@ -76,28 +76,34 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['validUntil'] = array(
  */
 class mod_gewinnspiel extends Backend
 {
-	/**
-	 * Return all gallery_creator frontent-templates as array
-	 * @param object
-	 * @return array
-	 */
-	public function getTemplates(DataContainer $dc)
-	{
-		$intPid = $dc->activeRecord->pid;
-		return $this->getTemplateGroup('ce_gc_', $intPid);
-	}
+       /**
+        * Return all gallery_creator frontent-templates as array
+        * @param object
+        * @return array
+        */
+       public function getTemplates(DataContainer $dc)
+       {
+              $intPid = $dc->activeRecord->pid;
+              return $this->getTemplateGroup('ce_gc_', $intPid);
+       }
 
+       /**
+        * @return array
+        */
        public function getAvisotaVerteiler()
        {
-              $objDb = $this->Database->execute('SELECT * FROM tl_avisota_recipient_list ORDER BY id');
               $options = array();
-              while ($objDb->next())
+              if (in_array('tl_avisota_recipient_list', $this->Database->listTables()))
               {
-                     $options[$objDb->id] = $objDb->title;
+                     $objDb = $this->Database->execute('SELECT * FROM tl_avisota_recipient_list ORDER BY id');
+                     while ($objDb->next())
+                     {
+                            $options[$objDb->id] = $objDb->title;
+                     }
               }
               return $options;
        }
 
-
 }
+
 ?>
