@@ -1,0 +1,111 @@
+<!-- Template für das Verkaufspersonal -->
+
+<!-- indexer::stop -->
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+
+<?php if ($this->headline): ?>
+
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+
+
+<?php if ($this->status == 'benutzer_nicht_registriert'): ?>
+<?php if ($GLOBALS['TL_LANG']['gewinnspiel'][$this->status]): ?>
+<p><?php echo $GLOBALS['TL_LANG']['gewinnspiel'][$this->status]; ?></p>
+<?php endif; ?>
+<?php endif; ?>
+
+
+
+<?php if ($this->status == 'ungueltiger_code'): ?>
+<?php if ($GLOBALS['TL_LANG']['gewinnspiel'][$this->status]): ?>
+<p><?php echo sprintf($GLOBALS['TL_LANG']['gewinnspiel'][$this->status], $this->userData['code']); ?></p>
+<?php endif; ?>
+<?php endif; ?>
+
+
+
+<?php if ($this->status == 'einloesefrist_abgelaufen'): ?>
+<?php if ($GLOBALS['TL_LANG']['gewinnspiel'][$this->status]): ?>
+<p><?php echo sprintf($GLOBALS['TL_LANG']['gewinnspiel'][$this->status],$this->parseDate('Y-m-d', $this->userData['validUntil'])); ?></p>
+<?php endif; ?>
+<?php endif; ?>
+
+
+
+<?php if ($this->status == 'gutschein_bereits_eingeloest'): ?>
+<?php if ($GLOBALS['TL_LANG']['gewinnspiel'][$this->status]): ?>
+<p><?php echo sprintf($GLOBALS['TL_LANG']['gewinnspiel'][$this->status],$this->userData['hasBeenPaidOn']); ?></p>
+<?php endif; ?>
+<?php endif; ?>
+
+
+
+<?php if ($this->status == 'kunden_auszahlen'): ?>
+<?php if ($GLOBALS['TL_LANG']['gewinnspiel'][$this->status]): ?>
+<p><?php echo $GLOBALS['TL_LANG']['gewinnspiel'][$this->status]; ?></p>
+<?php endif; ?>
+<h3>Der Teilnehmer hat folgenden Preis gewonnen:</h3>
+<table>
+    <tr>
+        <td><img width="200" src="<?php echo $this->srcPrizeImage; ?>" title="Preis" alt="Preis"></td>
+        <td><strong><?php echo $this->userData['prizeName']; ?></strong><br><?php echo $this->userData['prizeDescription']; ?></td>
+    </tr>
+</table>
+</div>
+<?php endif; ?>
+
+
+
+
+
+<?php if ($this->status == 'form'): ?>
+
+<?php if ($GLOBALS['TL_LANG']['gewinnspiel'][$this->status]): ?>
+<p><?php echo $GLOBALS['TL_LANG']['gewinnspiel'][$this->status]; ?></p>
+<?php endif; ?>
+
+<form<?php if ($this->action): ?> action="<?php echo $this->action; ?>"<?php endif; ?> id="<?php echo $this->formId; ?>" method="post">
+<div class="formbody">
+    <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
+    <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
+<?php if (!$this->tableless): ?>
+    <table>
+           <?php foreach ($this->arrFields as $fieldname => $field): ?>
+           <?php  echo $field; ?>
+           <?php endforeach; ?>
+    </table>
+<?php else: ?>
+    <div class="fields">
+           <?php foreach ($this->arrFields as $fieldname => $field): ?>
+           <?php echo $field; ?>
+           <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+</div>
+</form>
+<?php endif; ?>
+
+
+
+
+
+</div>
+
+<!-- Im Produktivmodus auskommentieren -->
+<!-- Im Produktivmodus auskommentieren -->
+<!-- Im Produktivmodus auskommentieren -->
+<!-- Im Produktivmodus auskommentieren -->
+<p><strong>status: </strong><?php echo $this->status; ?></p>
+<?php foreach ($this->userData as $key => $value): ?>
+<p><strong><?php echo $key; ?>: </strong><?php echo $value; ?></p>
+<?php endforeach; ?>
+<!-- ****** ---------------------- -->
+<!-- ****** ---------------------- -->
+<!-- ****** ---------------------- -->
+<!-- ****** ---------------------- -->
+
+
+
+<!-- indexer::continue -->

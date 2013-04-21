@@ -1,0 +1,17 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Ihre Gewinnbestätigung</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+<?php //echo print_r($this->userData,true); ?>
+<h1>Herzlichen Gl&uuml;ckwunsch! Sie haben gewonnen.</h1>
+<p>&Uuml;ber folgenden Link k&ouml;nnen Sie das Gewinnerzertifikat herunterladen.</p>
+<p><a href="<?php echo $this->href; ?>"><?php echo $this->href; ?></a></p>
+<p>Bitte benutzen Sie für die Authentifierung Ihren <strong>Gewinnercode</strong></p>
+<p>Mit freundlichen Gr&uuml;ssen </p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<div id="tl_buttons">
+<a href="contao/main.php" class="header_back" title="Zurück" accesskey="b" onclick="Backend.getScrollOffset()">Zurück</a>
+</div>
+
+
+<?php if ($this->mode == 'show_form'): ?>
+<h2 class="sub_headline">Codes automatisch generieren</h2>
+
+<form action="<?php echo $this->action; ?>" id="<?php echo $this->formId; ?>" class="tl_form" method="post" enctype="application/x-www-form-urlencoded">
+<div class="tl_formbody_edit">
+<input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
+<input type="hidden" name="REQUEST_TOKEN" value="<?php echo REQUEST_TOKEN; ?>">
+<input type="hidden" name="FORM_FIELDS[]" value="{gewinnspiel_legend},avisota_registration_lists,participantGewinnspiel;{personal_legend},firstname,lastname,dateOfBirth,gender;{address_legend:hide},company,street,postal,city,state,country;{contact_legend},phone,mobile,fax,email,website,language;{groups_legend},groups;{login_legend},login;{homedir_legend:hide},assignDir;{newsletter_legend:hide},newsletter;{account_legend},disable,start,stop">
+
+<table>
+<?php foreach ($this->arrFields as $fieldname => $field): ?>
+<?php  echo $field; ?>
+<?php endforeach; ?>
+</table>
+</div>
+</form>
+<?php endif; ?>
+
+<?php if ($this->mode == 'generated_codes'): ?>
+<h2 class="sub_headline">Codes wurden erfolgreich generiert und in die Tabelle eingefügt.</h2>
+<?php endif; ?>

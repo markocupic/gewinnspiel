@@ -1,0 +1,108 @@
+
+<!-- indexer::stop -->
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+
+
+<?php if ($this->status == 'show_form'): ?>
+<form<?php if ($this->action): ?> action="<?php echo $this->action; ?>"<?php endif; ?> id="<?php echo $this->formId; ?>" method="post">
+<div class="formbody">
+    <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
+    <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
+<?php if (!$this->tableless): ?>
+    <table>
+        <?php foreach ($this->arrFields as $fieldname => $field): ?>
+        <?php  echo $field; ?>
+        <?php endforeach; ?>
+    </table>
+<?php else: ?>
+    <div class="fields">
+           <?php foreach ($this->arrFields as $fieldname => $field): ?>
+           <?php echo $field; ?>
+           <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+</div>
+</form>
+<?php endif; ?>
+
+
+
+<?php if ($this->status == 'gewonnen'): ?>
+<h2>Herzliche Gratulation, Sie haben gewonnen!</h2>
+<p>In Kürze erhalten Sie eine email mit dem Link zum Gewinnerzertifikat, welches Sie im Geschäft einlösen können.</p>
+
+<h3>Ihr Preis:</h3>
+<table>
+    <tr>
+        <td><img width="200" src="<?php echo $this->srcPrizeImage; ?>" title="Ihr Preis" alt="Ihr Preis"></td>
+        <td><strong><?php echo $this->userData['prizeName']; ?></strong><br><?php echo $this->userData['prizeDescription']; ?></td>
+    </tr>
+</table>
+<?php endif; ?>
+
+
+<?php if ($this->status == 'kein_gewinn'): ?>
+<h2>Ihr Code erzielte leider keinen Gewinn.</h2>
+<?php endif; ?>
+
+
+
+<?php if ($this->status == 'code_bereits_eingeloest'): ?>
+<h2>Dieser Code wurde bereits eingelöst.</h2>
+<?php endif; ?>
+
+
+
+<?php if ($this->status == 'show_certificate_form'): ?>
+<?php if ($this->message) : ?>
+    <p><?php echo $this->message; ?></p>
+<?php endif; ?>
+
+<p>Bitte geben Sie, um sich zu authentifizieren Ihren Gewinncode ein.</p>
+<form<?php if ($this->action): ?> action="<?php echo $this->action; ?>"<?php endif; ?> onsubmit="this.fade(0)" id="<?php echo $this->formId; ?>" method="post">
+    <div class="formbody">
+        <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
+        <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
+<?php if (!$this->tableless): ?>
+       <table>
+       <?php foreach ($this->arrFields as $fieldname => $field): ?>
+       <?php  echo $field; ?>
+       <?php endforeach; ?>
+       </table>
+<?php else: ?>
+       <div class="fields">
+       <?php foreach ($this->arrFields as $fieldname => $field): ?>
+       <?php echo $field; ?>
+       <?php endforeach; ?>
+       </div>
+<?php endif; ?>
+    </div>
+</form>
+<?php endif; ?>
+
+
+</div>
+
+
+
+
+
+<!-- Im Produktivmodus auskommentieren -->
+<!-- Im Produktivmodus auskommentieren -->
+<!-- Im Produktivmodus auskommentieren -->
+<!-- Im Produktivmodus auskommentieren -->
+<h3>Debug-Informationen</h3>
+<p><strong>status: </strong><?php echo $this->status; ?></p>
+<?php foreach ($this->userData as $key => $value): ?>
+<p><strong><?php echo $key; ?>: </strong><?php echo $value; ?></p>
+<?php endforeach; ?>
+<!-- ****** ---------------------- -->
+<!-- ****** ---------------------- -->
+<!-- ****** ---------------------- -->
+<!-- ****** ---------------------- -->
+<!-- indexer::continue -->
