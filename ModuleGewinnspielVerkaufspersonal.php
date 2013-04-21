@@ -29,20 +29,20 @@
  */
 
 /**
- * Class ModuleGewinnspielGewinnAbbuchen
+ * Class ModuleGewinnspielVerkaufspersonal
  *
  * @copyright  Marko Cupic 2013
  * @author     Marko Cupic <m.cupic@gmx.ch>
  * @package    Gewinnspiel
  */
 
-class ModuleGewinnspielGewinnAbbuchen extends ModuleGewinnspiel
+class ModuleGewinnspielVerkaufspersonal extends ModuleGewinnspiel
 {
        /**
         * default template
         * @var string
         */
-       protected $strTemplate = 'mod_gewinnspiel_preis_abbuchen';
+       protected $strTemplate = 'mod_gewinnspiel_verkaufspersonal';
 
        /**
         * Parse the template

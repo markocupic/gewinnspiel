@@ -56,7 +56,7 @@ array_insert($GLOBALS['FE_MOD'], 0, array
        'gewinnspiele' => array
        (
               'gewinnspiel' => 'ModuleGewinnspielTeilnehmer',
-              'gewinnspiel_gewinn_abbuchen' => 'ModuleGewinnspielGewinnAbbuchen'
+              'gewinnspiel_gewinn_abbuchen' => 'ModuleGewinnspielVerkaufspersonal'
        )
  ));
 
