@@ -12,15 +12,15 @@
 --
 CREATE TABLE `tl_gewinnspiel_codes` (
   `id` int(10) unsigned NOT NULL auto_increment,
-  `tstamp` int(10) unsigned NOT NULL default '0',
+  `tstamp` varchar(10) NOT NULL default '',
   `code` varchar(128) NOT NULL default '',
   `crypt` char(1) NOT NULL default '',
   `token` varchar(128) NOT NULL default '',
   `prizeGroup` int(10) unsigned NOT NULL default '0',
-  `validUntil` int(10) unsigned NOT NULL default '0'
   `locked` char(1) NOT NULL default '',
   `memberId` int(10) unsigned NOT NULL default '0',
   `enteredCodeOn` varchar(10) NOT NULL default '',
+  `validUntil` varchar(10) NOT NULL default '',
   `hasBeenPaidOn` varchar(10) NOT NULL default '',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `code` (`code`),

@@ -31,15 +31,6 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_preise'] = array
        (
               'dataContainer' => 'Table',
               'enableVersioning' => true,
-              'onload_callback' => array
-              (//
-              ),
-              'ondelete_callback' => array
-              (//
-              ),
-              'onsubmit_callback' => array
-              (//
-              )
        ),
        // List
        'list' => array
@@ -89,14 +80,20 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_preise'] = array
        // Palettes
        'palettes' => array
        (
-              'default' => '{title_legend},name,description'
+              'default' => '{title_legend},id,name,description'
        ),
-       // Subpalettes
-       'subpalettes' => array
-       (),
        // Fields
        'fields' => array
        (
+              'id' => array
+              (
+                     'label' => 'ID',
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'inputType' => 'text',
+                     'eval' => array('mandatory' => true, 'tl_class' => '', 'rgxp' => 'digit'),
+              ),
               'name' => array
               (
                      'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_preise']['name'],

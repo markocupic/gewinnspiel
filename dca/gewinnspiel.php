@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php if (!defined('TL_ROOT'))
+       die('You can not access this file directly!');
 
 /**
  * Contao Open Source CMS
@@ -28,7 +29,7 @@
  */
 
 $GLOBALS['TL_DCA']['gewinnspiel'] = array(
-// Config
+       // Config
        'fields' => array(
               'gender' => array
               (
@@ -42,13 +43,13 @@ $GLOBALS['TL_DCA']['gewinnspiel'] = array(
               (
                      'label' => &$GLOBALS['TL_LANG']['gewinnspiel']['firstname'],
                      'inputType' => 'textField',
-                     'eval' => array('required' => true)
+                     'eval' => array('required' => true, 'rgxp' => 'alpha')
               ),
               'lastname' => array
               (
                      'label' => &$GLOBALS['TL_LANG']['gewinnspiel']['lastname'],
                      'inputType' => 'textField',
-                     'eval' => array('required' => true)
+                     'eval' => array('required' => true, 'rgxp' => 'alpha')
               ),
               'email' => array
               (
@@ -60,7 +61,7 @@ $GLOBALS['TL_DCA']['gewinnspiel'] = array(
               (
                      'label' => &$GLOBALS['TL_LANG']['gewinnspiel']['code'],
                      'inputType' => 'textField',
-                     'eval' => array('required' => true)
+                     'eval' => array('required' => true, 'rgxp' => 'alnum')
               ),
               'agb' => array
               (
@@ -70,6 +71,11 @@ $GLOBALS['TL_DCA']['gewinnspiel'] = array(
                      'value' => 'yes',
                      'options' => array('yes'),
                      'eval' => array('mandatory' => true, 'required' => true)
+              ),
+              'captcha' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['gewinnspiel']['captcha'],
+                     'inputType' => 'captcha'
               ),
               'submit' => array
               (

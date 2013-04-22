@@ -33,6 +33,8 @@ $GLOBALS['TL_LANG']['generate_codes']['items'] = 'Anzahl:';
 $GLOBALS['TL_LANG']['generate_codes']['praefix'] = 'Code-Präfix:';
 $GLOBALS['TL_LANG']['generate_codes']['length'] = 'Länge:';
 $GLOBALS['TL_LANG']['generate_codes']['submit'] = 'Codes generieren';
+$GLOBALS['TL_LANG']['generate_codes']['confirm'] = 'Bestätigen Sie den Vorgang mit "yes"';
+
 //references
 $GLOBALS['TL_LANG']['generate_codes']['append_rows'] = 'Codes an die bestehenden Einträge anhängen';
 $GLOBALS['TL_LANG']['generate_codes']['delete_table'] = 'Bestehende Tabelle vorher löschen';

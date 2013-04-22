@@ -1,4 +1,5 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php if (!defined('TL_ROOT'))
+       die('You can not access this file directly!');
 
 /**
  * Contao Open Source CMS
@@ -28,7 +29,7 @@
  */
 
 $GLOBALS['TL_DCA']['generate_codes'] = array(
-// Config
+       // Config
        'fields' => array(
               'insert_mode' => array
               (
@@ -55,6 +56,12 @@ $GLOBALS['TL_DCA']['generate_codes'] = array(
                      'label' => &$GLOBALS['TL_LANG']['generate_codes']['length'],
                      'inputType' => 'textField',
                      'eval' => array('required' => true, 'rgxp' => 'digit')
+              ),
+              'confirm' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['generate_codes']['confirm'],
+                     'inputType' => 'textField',
+                     'eval' => array('required' => true, 'rgxp' => 'alpha', 'maxlength' => 3)
               ),
               'submit' => array
               (

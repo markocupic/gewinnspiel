@@ -25,7 +25,7 @@
  * Table tl_gewinnspiel_codes
  */
 $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
-       (
+(
        // Config
        'config' => array
        (
@@ -43,147 +43,142 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
        ),
        // List
        'list' => array
-              (
+       (
               'sorting' => array
-                     (
+              (
                      'panelLayout' => 'filter;sort,search,limit',
                      'fields' => array('id ASC')
               ),
               'label' => array
-(
-       'fields' => array('id', 'code', 'locked', 'hasBeenPaidOn'),
-       'format' => '[ID: %s] code: %s locked: %s Preis abgeholt am: %s'
-),
+              (
+                     'fields' => array('id', 'code', 'locked', 'hasBeenPaidOn'),
+                     'format' => '[ID: %s] code: %s locked: %s Preis abgeholt am: %s'
+              ),
               'global_operations' => array
-(
-       'all' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['MSC']['all'],
-              'href' => 'act=select',
-              'class' => 'header_edit_all',
-              'attributes' => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-       )
-),
+              (
+                     'all' => array
+                     (
+                            'label' => &$GLOBALS['TL_LANG']['MSC']['all'],
+                            'href' => 'act=select',
+                            'class' => 'header_edit_all',
+                            'attributes' => 'onclick="Backend.getScrollOffset()" accesskey="e"'
+                     )
+              ),
               'operations' => array
-(
-       'edit' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['MSC']['edit'],
-              'href' => 'act=edit',
-              'icon' => 'edit.gif'
-       ),
-       'delete' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['MSC']['delete'],
-              'href' => 'act=delete',
-              'icon' => 'delete.gif',
-              'attributes' => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
-       ),
-       'show' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['MSC']['show'],
-              'href' => 'act=show',
-              'icon' => 'show.gif'
-       )
-)
+              (
+                     'edit' => array
+                     (
+                            'label' => &$GLOBALS['TL_LANG']['MSC']['edit'],
+                            'href' => 'act=edit',
+                            'icon' => 'edit.gif'
+                     ),
+                     'delete' => array
+                     (
+                            'label' => &$GLOBALS['TL_LANG']['MSC']['delete'],
+                            'href' => 'act=delete',
+                            'icon' => 'delete.gif',
+                            'attributes' => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
+                     ),
+                     'show' => array
+                     (
+                            'label' => &$GLOBALS['TL_LANG']['MSC']['show'],
+                            'href' => 'act=show',
+                            'icon' => 'show.gif'
+                     )
+              )
        ),
        // Palettes
        'palettes' => array
-(
-       'default' => 'code,locked,token,prizeGroup,validUntil,memberId,enteredCodeOn,hasBeenPaidOn'
-),
+       (
+              'default' => 'code,locked,token,prizeGroup,validUntil,memberId,enteredCodeOn,hasBeenPaidOn'
+       ),
        // Subpalettes
        'subpalettes' => array
-(),
+       (),
        // Fields
        'fields' => array
-(
-       'code' => array
        (
-              'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['code'],
-              'exclude' => true,
-              'search' => true,
-              'sorting' => true,
-              'flag' => 1,
-              'inputType' => 'text',
-              'eval' => array('unique' => true, 'mandatory' => true, 'tl_class' => ''),
-       ),
-       'locked' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['locked'],
-              'exclude' => true,
-              'search' => true,
-              'sorting' => true,
-              'filter' => true,
-              'flag' => 1,
-              'inputType' => 'text',
-              'eval' => array('tl_class' => ''),
-       ),
-       'token' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['token'],
-              'exclude' => true,
-              'search' => true,
-              'sorting' => true,
-              'filter' => true,
-              'flag' => 1,
-              'inputType' => 'text',
-              'eval' => array('tl_class' => ''),
-       ),
-       'prizeGroup' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['prizeGroup'],
-              'exclude' => true,
-              'search' => true,
-              'sorting' => true,
-              'filter' => true,
-              'flag' => 1,
-              'inputType' => 'text',
-              'eval' => array('tl_class' => ''),
-       ),
-       'validUntil' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['validUntil'],
-              'exclude' => true,
-              'search' => true,
-              'sorting' => true,
-              'filter' => true,
-              'flag' => 1,
-              'inputType' => 'text',
-              'eval' => array('tl_class' => ''),
-       ),
-       'memberId' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['memberId'],
-              'exclude' => true,
-              'search' => true,
-              'sorting' => true,
-              'filter' => true,
-              'flag' => 1,
-              'inputType' => 'text',
-              'eval' => array('tl_class' => ''),
-       ),
-       'enteredCodeOn' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['enteredCodeOn'],
-              'exclude' => true,
-              'search' => true,
-              'sorting' => true,
-              'filter' => true,
-              'flag' => 1,
-              'inputType' => 'text',
-              'eval' => array('tl_class' => ''),
-       ),
-       'hasBeenPaidOn' => array
-       (
-              'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['hasBeenPaidOn'],
-              'exclude' => true,
-              'search' => true,
-              'sorting' => true,
-              'filter' => true,
-              'flag' => 1,
-              'inputType' => 'text',
-              'eval' => array('tl_class' => ''),
+              'code' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['code'],
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'inputType' => 'text',
+                     'eval' => array('unique' => true, 'mandatory' => true, 'tl_class' => '', 'rgxp' => 'alnum'),
+              ),
+              'locked' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['locked'],
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'filter' => true,
+                     'inputType' => 'checkbox',
+                     'isBoolean' => true,
+                     'eval' => array('tl_class' => ''),
+              ),
+              'token' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['token'],
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'filter' => true,
+                     'inputType' => 'text',
+                     'eval' => array('tl_class' => '', 'rgxp' => 'alnum'),
+              ),
+              'prizeGroup' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['prizeGroup'],
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'filter' => true,
+                     'inputType' => 'select',
+                     'foreignKey' => 'tl_gewinnspiel_preise.CONCAT("[ID: ", id, "] " , name)',
+                     'eval' => array('tl_class' => ''),
+              ),
+              'memberId' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['memberId'],
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'filter' => true,
+                     'inputType' => 'select',
+                     'foreignKey' => 'tl_member.CONCAT("[ID: ", id, "] ", firstname ," ", lastname)',
+                     'eval' => array('includeBlankOption' => true, 'tl_class' => ''),
+              ),
+              'enteredCodeOn' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['enteredCodeOn'],
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'filter' => true,
+                     'inputType' => 'text',
+                     'eval' => array('tl_class' => '', 'rgxp' => 'datim'),
+              ),
+              'validUntil' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['validUntil'],
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'filter' => true,
+                     'inputType' => 'text',
+                     'eval' => array('tl_class' => '', 'rgxp' => 'datim'),
+              ),
+              'hasBeenPaidOn' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['hasBeenPaidOn'],
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'filter' => true,
+                     'inputType' => 'text',
+                     'eval' => array('tl_class' => '', 'rgxp' => 'datim'),
+              )
        )
-)
 );
