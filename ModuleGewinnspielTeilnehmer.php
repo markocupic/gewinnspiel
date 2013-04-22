@@ -171,7 +171,7 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                             $this->loadLanguageFile('gewinnspiel');
                             $this->loadDataContainer('gewinnspiel');
                             $dca = $GLOBALS['TL_DCA']['gewinnspiel'];
-                            $arrFieldsFromDca = array('gender', 'firstname', 'lastname', 'email', 'code', 'agb', 'submit');
+                            $arrFieldsFromDca = array('gender', 'firstname', 'lastname', 'email', 'code', 'captcha','agb', 'submit');
                             $this->Template->tableless = $this->tableless;
                             $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'gewinnspiel');
               }
@@ -294,7 +294,7 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                      'locked' => 1,
                      'validUntil' => time() + $this->validUntil * 24 * 60 * 60,
                      'memberId' => $this->userData['memberId'],
-                     'enteredCodeOn' => date('Y-m-d')
+                     'enteredCodeOn' => time()
               );
               $this->Database->prepare('UPDATE tl_gewinnspiel_codes %s WHERE code = ?')->set($set)->execute($this->cryptCode($this->userData['code']));
               $this->userData['token'] = $set['token'];

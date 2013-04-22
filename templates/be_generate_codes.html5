@@ -5,7 +5,7 @@
 
 <?php if ($this->mode == 'show_form'): ?>
 <h2 class="sub_headline">Codes automatisch generieren</h2>
-
+<h3>Bitte führen Sie den Vorgang nur aus, wenn Sie sich dessen Auswirkungen klar besusst sind!</h3>
 <form action="<?php echo $this->action; ?>" id="<?php echo $this->formId; ?>" class="tl_form" method="post" enctype="application/x-www-form-urlencoded">
 <div class="tl_formbody_edit">
 <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">

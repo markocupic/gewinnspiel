@@ -52,7 +52,8 @@ class GenerateCodes extends BackendModule
        public function compile()
        {
               $this->Template->mode = 'show_form';
-              if ($_SESSION['gewinnspiel']['generate_codes']) {
+              if ($_SESSION['gewinnspiel']['generate_codes'] && $_SESSION['gewinnspiel']['post']['confirm'] == 'yes')
+              {
                      // generate codes
                      $post = $_SESSION['gewinnspiel']['post'];
                      $items = $post['items'];
@@ -62,28 +63,36 @@ class GenerateCodes extends BackendModule
                      $arrCodes = array();
 
                      // append new entries or truncate table before inserting new entries
-                     if ($post['insert_mode'] == 'delete_table') {
+                     if ($post['insert_mode'] == 'delete_table')
+                     {
                             $this->Database->execute('TRUNCATE TABLE tl_gewinnspiel_codes');
-                     } else {
+                     }
+                     else
+                     {
                             $objDb = $this->Database->execute('SELECT code FROM tl_gewinnspiel_codes');
                             while ($objDb->next())
                             {
-                                    $arrCodes[] = $objDb->code;
+                                   $arrCodes[] = $objDb->code;
                             }
 
                      }
 
                      // code length
                      $len = $post['length'];
-                     if ($len < strlen((string)$items) + 2) {
+                     if ($len < strlen((string)$items) + 2)
+                     {
                             $length = strlen($items) + 2;
-                     } else {
+                     }
+                     else
+                     {
                             $length = $len;
                      }
                      $m = 0;
-                     for ($i = 1; $i <= $items; $i++) {
+                     for ($i = 1; $i <= $items; $i++)
+                     {
                             $m++;
-                            do {
+                            do
+                            {
                                    $code = $prefix . substr(sha1(rand(100000000, 9999999999) . md5(microtime())), 0, $length);
                             } while (in_array($code, $arrCodes));
                             $arrCodes[] = $code;
@@ -95,14 +104,16 @@ class GenerateCodes extends BackendModule
                             $m = ($m == 10 ? $m = 0 : $m);
                      }
                      $this->Template->mode = 'generated_codes';
-              } else {
+              }
+              else
+              {
                      // display the form
                      $this->Template->formId = 'generate_codes';
                      $this->Template->action = $this->Environment->request;
                      $this->loadLanguageFile('generate_codes');
                      $this->loadDataContainer('generate_codes');
                      $dca = $GLOBALS['TL_DCA']['generate_codes'];
-                     $arrFieldsFromDca = array('insert_mode', 'items', 'praefix', 'length', 'submit');
+                     $arrFieldsFromDca = array('insert_mode', 'items', 'praefix', 'length', 'confirm', 'submit');
                      $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'generate_codes');
               }
        }
@@ -111,23 +122,28 @@ class GenerateCodes extends BackendModule
        {
               $row = 0;
               $arrFields = array();
-              foreach ($arrSelectedFields as $fieldname) {
+              foreach ($arrSelectedFields as $fieldname)
+              {
                      //tableless or not
-                     if ($this->tableless) {
+                     if ($this->tableless)
+                     {
                             $dca['fields'][$fieldname]['eval']['tableless'] = true;
                      }
                      $arrField = $dca['fields'][$fieldname];
                      // get the widget class from the dca
                      $widgetClass = 'Form' . ucfirst($arrField['inputType']);
                      $objWidget = new $widgetClass($this->prepareForWidget($arrField, $fieldname));
-                     if ($fieldname == 'submit') {
+                     if ($fieldname == 'submit')
+                     {
                             $objWidget->slabel = $arrField['label'];
                      }
                      $objWidget->rowClass = sprintf('row_%s  %s', $row, ($row % 2 == 0 ? 'even' : 'odd'));
                      // Validate widget
-                     if ($this->Input->post('FORM_SUBMIT') == $formId) {
+                     if ($this->Input->post('FORM_SUBMIT') == $formId)
+                     {
                             $objWidget->validate();
-                            if ($objWidget->hasErrors()) {
+                            if ($objWidget->hasErrors())
+                            {
                                    $objWidget->value = '';
                                    $objWidget->addError($GLOBALS['TL_LANG']['ERR']['invalidPass']);
                                    $hasError = true;
@@ -138,7 +154,8 @@ class GenerateCodes extends BackendModule
               }
               // if all forms are filled correctly check the code and reload the page
               // the code status will be found in the session
-              if (!$hasError && $this->Input->post('FORM_SUBMIT') == $formId) {
+              if (!$hasError && $this->Input->post('FORM_SUBMIT') == $formId)
+              {
                      $_SESSION['gewinnspiel']['generate_codes'] = true;
                      $_SESSION['gewinnspiel']['post'] = $_POST;
                      $this->reload();

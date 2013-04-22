@@ -149,7 +149,7 @@ class ModuleGewinnspielVerkaufspersonal extends ModuleGewinnspiel
                             else
                             {
                                    $set = array(
-                                          'hasBeenPaidOn' => date('Y-m-d H:i'),
+                                          'hasBeenPaidOn' => time(),
                                           'locked' => 1
                                    );
                                    $this->Database->prepare('UPDATE tl_gewinnspiel_codes %s WHERE id =?')->set($set)->executeUncached($objCode->id);
