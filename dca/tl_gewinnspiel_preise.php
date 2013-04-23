@@ -87,7 +87,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_preise'] = array
        (
               'id' => array
               (
-                     'label' => 'ID',
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_preise']['id'],
                      'exclude' => true,
                      'search' => true,
                      'sorting' => true,

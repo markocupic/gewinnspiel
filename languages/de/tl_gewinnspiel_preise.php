@@ -28,5 +28,6 @@
  */
 
 //fields
+$GLOBALS['TL_LANG']['tl_gewinnspiel_preise']['id'] = array('ID');
 $GLOBALS['TL_LANG']['tl_gewinnspiel_preise']['name'] = array('Preis');
 $GLOBALS['TL_LANG']['tl_gewinnspiel_preise']['description'] = array('Preis-Beschreibung');

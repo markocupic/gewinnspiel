@@ -28,12 +28,13 @@
  */
 
 //fields
-$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['code'] = array('Gewinncode:');
-$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['locked'] = array('Code gesperrt:');
-$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['token'] = array('Token:');
-$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['prizeGroup'] = array('Preisgruppe:');
-$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['validUntil'] = array('Preis einlösbar bis:');
-$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['memberId'] = array('Mitglieder-ID:');
-$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['enteredCodeOn'] = array('Gewinncode registriert am:');
-$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['hasBeenPaidOn'] = array('Gewinn abgeholt am:');
+$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['id'] = array('ID');
+$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['code'] = array('Gewinncode');
+$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['locked'] = array('Code gesperrt');
+$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['token'] = array('Token');
+$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['prizeGroup'] = array('Preisgruppe');
+$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['validUntil'] = array('Preis einlösbar bis');
+$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['memberId'] = array('Mitglieder-ID');
+$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['enteredCodeOn'] = array('Gewinncode registriert am');
+$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['hasBeenPaidOn'] = array('Gewinn abgeholt am');
 

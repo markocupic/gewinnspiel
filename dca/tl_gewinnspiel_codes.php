@@ -51,8 +51,9 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
               ),
               'label' => array
               (
-                     'fields' => array('id', 'code', 'locked', 'hasBeenPaidOn'),
-                     'format' => '[ID: %s] code: %s locked: %s Preis abgeholt am: %s'
+                     'fields' => array('id', 'code'),
+                     'format' => '<span style="#color#">[ID: %s] code: %s; locked: #locked#; #hasBeenPaidOn#</span>',
+                     'label_callback' => array('tl_gewinnspiel_codes', 'labelCallback')
               ),
               'global_operations' => array
               (
@@ -90,7 +91,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
        // Palettes
        'palettes' => array
        (
-              'default' => 'code,locked,token,prizeGroup,validUntil,memberId,enteredCodeOn,hasBeenPaidOn'
+              'default' => 'id,code,locked,token,prizeGroup,validUntil,memberId,enteredCodeOn,hasBeenPaidOn'
        ),
        // Subpalettes
        'subpalettes' => array
@@ -98,6 +99,15 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
        // Fields
        'fields' => array
        (
+              'id' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['id'],
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'inputType' => 'text',
+                     'eval' => array('unique' => true, 'mandatory' => true, 'tl_class' => '', 'rgxp' => 'digit', 'readonly' => true),
+              ),
               'code' => array
               (
                      'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['code'],
@@ -126,7 +136,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'sorting' => true,
                      'filter' => true,
                      'inputType' => 'text',
-                     'eval' => array('tl_class' => '', 'rgxp' => 'alnum'),
+                     'eval' => array('tl_class' => '', 'rgxp' => 'alnum', 'readonly' => true),
               ),
               'prizeGroup' => array
               (
@@ -182,3 +192,30 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
               )
        )
 );
+
+/**
+ * Class tl_gewinnspiel_codes
+ *
+ * Provide miscellaneous methods that are used by the data configuration array.
+ * @copyright  Marko Cupic 2013
+ * @author     Marko Cupic <m.cupic@gmx.ch>
+ * @package    Gewinnspiel
+ */
+class tl_gewinnspiel_codes extends Backend
+{
+       /**
+	 * @param array
+	 * @param string
+	 * @return string
+	 */
+	public function labelCallback($row, $label)
+       {
+		$locked = $row['locked'] ? '1' : '0';
+              $color = $row['locked'] ? 'color:red; ' : '';
+              $hasBeenPaidOn = $row['hasBeenPaidOn'] ? sprintf('Preis abgeholt am: %s', date('Y-m-d', $row['hasBeenPaidOn'])) : '';
+              $label = str_replace('#color#', $color, $label);
+		$label = str_replace('#locked#', $locked, $label);
+              $label = str_replace('#hasBeenPaidOn#', $hasBeenPaidOn, $label);
+		return $label;
+	}      
+}
