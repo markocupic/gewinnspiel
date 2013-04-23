@@ -29,3 +29,6 @@
 
 // fields
 $GLOBALS['TL_DCA']['tl_module']['fields']['participantGewinnspiel'] = array('Teilnehmer am Gewinnspiel');
+
+// legends
+$GLOBALS['TL_LANG']['tl_member']['gewinnspiel_legend'] = 'Gewinnspiel';
