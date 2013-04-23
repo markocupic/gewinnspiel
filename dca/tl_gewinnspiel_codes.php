@@ -204,18 +204,18 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
 class tl_gewinnspiel_codes extends Backend
 {
        /**
-	 * @param array
-	 * @param string
-	 * @return string
-	 */
-	public function labelCallback($row, $label)
+        * @param array
+        * @param string
+        * @return string
+        */
+       public function labelCallback($row, $label)
        {
-		$locked = $row['locked'] ? '1' : '0';
+              $locked = $row['locked'] ? '1' : '0';
               $color = $row['locked'] ? 'color:red; ' : '';
               $hasBeenPaidOn = $row['hasBeenPaidOn'] ? sprintf('Preis abgeholt am: %s', date('Y-m-d', $row['hasBeenPaidOn'])) : '';
               $label = str_replace('#color#', $color, $label);
-		$label = str_replace('#locked#', $locked, $label);
+              $label = str_replace('#locked#', $locked, $label);
               $label = str_replace('#hasBeenPaidOn#', $hasBeenPaidOn, $label);
-		return $label;
-	}      
+              return $label;
+       }
 }

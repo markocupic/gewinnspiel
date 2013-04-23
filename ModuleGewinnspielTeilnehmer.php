@@ -133,7 +133,8 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
        {
               global $objPage;
               $this->Template->status = $this->status;
-              $this->Template->userData = $this->userData ? $this->userData : array();;
+              $this->Template->userData = $this->userData ? $this->userData : array();
+              ;
 
               switch ($this->status)
               {
@@ -141,11 +142,13 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                             $this->registerUser();
                             $this->lockCode();
                             $this->sendConfirmationEmail();
+                            $this->sendAdminEmailNotification();
                             $prizeSrc = $this->prizeImagesFolder . '/preis_' . $this->userData['prizeGroup'] . '.jpg';
                             $this->Template->srcPrizeImage = file_exists(TL_ROOT . '/' . $prizeSrc) ? $prizeSrc : '';
                             break;
                      case 'kein_gewinn':
                             $this->registerUser();
+                            $this->sendAdminEmailNotification();
                             break;
                      case 'code_bereits_eingeloest':
                             break;
@@ -171,7 +174,7 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                             $this->loadLanguageFile('gewinnspiel');
                             $this->loadDataContainer('gewinnspiel');
                             $dca = $GLOBALS['TL_DCA']['gewinnspiel'];
-                            $arrFieldsFromDca = array('gender', 'firstname', 'lastname', 'email', 'code', 'captcha','agb', 'submit');
+                            $arrFieldsFromDca = array('gender', 'firstname', 'lastname', 'email', 'code', 'captcha', 'agb', 'submit');
                             $this->Template->tableless = $this->tableless;
                             $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'gewinnspiel');
               }
@@ -200,6 +203,22 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
        }
 
        /**
+        * Send admin Email Notification
+        */
+       protected function sendAdminEmailNotification()
+       {
+              $email = new Email;
+              $email->priority = 'high';
+              $email->charset = 'UTF-8';
+              $email->from = $this->senderEmail;
+              $email->subject = 'Neuer registrierter Teilnehmer beim Gewinnspiel';
+              $objTemplate = new FrontendTemplate('mod_gewinnspiel_admin_email_notification');
+              $objTemplate->userData = $this->userData;
+              $email->html = $objTemplate->parse();
+              $email->sendTo($GLOBALS['TL_CONFIG']['adminEmail']);
+       }
+
+       /**
         * Send the confirmation Email
         */
        protected function sendConfirmationEmail()
@@ -211,11 +230,9 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
               $email->from = $this->senderEmail;
               $email->subject = 'Ihre Gewinnbestätigung';
               $objTemplate = new FrontendTemplate('mod_gewinnspiel_confirmation_email');
-              $objTemplate->href = $this->Environment->url . '/' . $this->generateFrontendUrl($objPage->row(), '/token/' . $this->userData['token'], $objPage->language);
+              $objTemplate->href = $this->Environment->base . $this->Environment->request . (($GLOBALS['TL_CONFIG']['disableAlias'] || strpos($this->Environment->request, '?') !== false) ? '&' : '?') . 'token=' . $this->userData['token'];
               $objTemplate->userData = $this->userData;
               $email->html = $objTemplate->parse();
-              // ********************* @ Entwicklermodus *******************
-              //$email->sendCc('m.cupic@gmx.ch');
               $email->sendTo(trim($this->userData['email']));
        }
 
@@ -240,12 +257,15 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                      $set['dateAdded'] = time();
                      $objInsert = $this->Database->prepare('INSERT INTO tl_member %s')->set($set)->execute();
                      $this->userData['memberId'] = $objInsert->insertId;
+                     $this->log('Ein neues Mitglied (ID ' . $objInsert->insertId . ') hat sich auf der Webseite registriert.', 'ModuleGewinnspielTeilnehmer registerUser()', TL_ACCESS);
               }
               else
               {
                      $this->Database->prepare('UPDATE tl_member %s WHERE id =  ?')->set($set)->execute($objMember->id);
                      $this->userData['memberId'] = $objMember->id;
+                     $this->log('Ein Mitglied (ID ' . $objMember->id . ') hat seine Kontoangaben geändert.', 'ModuleGewinnspielTeilnehmer registerUser()', TL_ACCESS);
               }
+              // write to the log
 
               // add member to tl_avisota_recipient, but only if avisota is installed
               if (in_array('tl_avisota_recipient_list', $this->Database->listTables()) && $this->addUserToAvisotaRecipientList)

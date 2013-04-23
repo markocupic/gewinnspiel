@@ -1,0 +1,23 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Teilnahmebenachrichtigung fuer den Administrator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+<?php //echo print_r($this->userData,true); ?>
+<?php if($this->userData['prizeId']): ?>
+<h1>Ein Teilnehmer hat erfolgreich am Gewinnspiel teilgenommen.</h1>
+<?php else: ?>
+<h1>Ein Teilnehmer hat ohne Erfolg am Gewinnspiel teilgenommen.</h1>
+<?php endif; ?>
+<h2>Folgende Daten wurden in der Datenbank erfasst</h2>
+<table>
+<?php foreach($this->userData as $key => $value): ?>
+<tr><td><?php echo $key; ?></td><td><?php echo $value; ?></td></tr>
+<?php endforeach; ?>
+</table>
+</body>
+</html>

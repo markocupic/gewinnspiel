@@ -288,9 +288,9 @@ class code128 extends BarCode {
 				$this->lastX = $this->positionX;
 				$this->lastY = $this->maxHeight;
 				// Removing Special Code
-				$this->text = ereg_replace(chr(128),'',$this->text);
-				$this->text = ereg_replace(chr(129),'',$this->text);
-				$this->text = ereg_replace(chr(130),'',$this->text);
+				$this->text = preg_replace('/' . chr(128) . '/','',$this->text);
+                            $this->text = preg_replace('/' . chr(129) . '/','',$this->text);
+                            $this->text = preg_replace('/' . chr(130) . '/','',$this->text);
 				$this->DrawText($im);
 			}
 		}
