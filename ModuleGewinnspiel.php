@@ -80,6 +80,10 @@ abstract class ModuleGewinnspiel extends Module
                      // get the widget class from the dca
                      $widgetClass = 'Form' . ucfirst($arrField['inputType']);
                      $objWidget = new $widgetClass($this->prepareForWidget($arrField, $fieldname));
+
+                     // set the class property
+                     $objWidget->class = $arrField['eval']['class'];
+
                      if ($fieldname == 'submit') {
                             $objWidget->slabel = "senden";
                      }
