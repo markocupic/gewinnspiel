@@ -21,6 +21,7 @@ CREATE TABLE `tl_gewinnspiel_codes` (
   `memberId` int(10) unsigned NOT NULL default '0',
   `enteredCodeOn` varchar(10) NOT NULL default '',
   `validUntil` varchar(10) NOT NULL default '',
+  `hasBeenPaid` char(1) NOT NULL default '',
   `hasBeenPaidOn` varchar(10) NOT NULL default '',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `code` (`code`),

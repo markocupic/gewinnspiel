@@ -140,7 +140,7 @@ class ModuleGewinnspielVerkaufspersonal extends ModuleGewinnspiel
                      {
                             $_SESSION['gewinnspiel_preis_einloesen']['status'] = 'benutzer_nicht_registriert';
                      }
-                     elseif ($objCode->hasBeenPaidOn == '')
+                     elseif ($objCode->hasBeenPaid == '')
                      {
                             if ($objCode->validUntil < time())
                             {
@@ -149,10 +149,12 @@ class ModuleGewinnspielVerkaufspersonal extends ModuleGewinnspiel
                             else
                             {
                                    $set = array(
+                                          'hasBeenPaid' => 1,
                                           'hasBeenPaidOn' => time(),
                                           'locked' => 1
                                    );
                                    $this->Database->prepare('UPDATE tl_gewinnspiel_codes %s WHERE id =?')->set($set)->executeUncached($objCode->id);
+                                   $this->userData['hasBeenPaid'] = $set['hasBeenPaid'];
                                    $this->userData['hasBeenPaidOn'] = $set['hasBeenPaidOn'];
                                    $this->userData['locked'] = 1;
                                    $_SESSION['gewinnspiel_preis_einloesen']['status'] = 'kunden_auszahlen';

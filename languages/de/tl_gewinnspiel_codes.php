@@ -36,5 +36,6 @@ $GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['prizeGroup'] = array('Preisgruppe')
 $GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['validUntil'] = array('Preis einlösbar bis');
 $GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['memberId'] = array('Mitglieder-ID');
 $GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['enteredCodeOn'] = array('Gewinncode registriert am');
+$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['hasBeenPaid'] = array('Gewinn abgeholt');
 $GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['hasBeenPaidOn'] = array('Gewinn abgeholt am');
 

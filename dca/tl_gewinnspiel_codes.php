@@ -91,11 +91,15 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
        // Palettes
        'palettes' => array
        (
-              'default' => 'id,code,locked,token,prizeGroup,validUntil,memberId,enteredCodeOn,hasBeenPaidOn'
+              '__selector__'       => array('hasBeenPaid', 'locked'),
+              'default'            => 'id,code,prizeGroup,locked,hasBeenPaid'
        ),
        // Subpalettes
-       'subpalettes' => array
-       (),
+       'subpalettes' => array(
+              'hasBeenPaid' => 'hasBeenPaidOn',
+              'locked'      => 'token,validUntil,memberId,enteredCodeOn',
+       ),
+
        // Fields
        'fields' => array
        (
@@ -126,7 +130,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'filter' => true,
                      'inputType' => 'checkbox',
                      'isBoolean' => true,
-                     'eval' => array('tl_class' => ''),
+                     'eval' => array('submitOnChange' => true, 'tl_class' => ''),
               ),
               'token' => array
               (
@@ -189,13 +193,22 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'filter' => true,
                      'inputType' => 'text',
                      'eval' => array('tl_class' => '', 'rgxp' => 'datim'),
+              ),
+              'hasBeenPaid' => array
+              (
+                     'label' => &$GLOBALS['TL_LANG']['tl_gewinnspiel_codes']['hasBeenPaid'],
+                     'exclude' => true,
+                     'search' => true,
+                     'sorting' => true,
+                     'filter' => true,
+                     'inputType' => 'checkbox',
+                     'isBoolean' => true,
+                     'eval' => array('submitOnChange' => true, 'tl_class' => ''),
               )
        )
 );
-
 /**
  * Class tl_gewinnspiel_codes
- *
  * Provide miscellaneous methods that are used by the data configuration array.
  * @copyright  Marko Cupic 2013
  * @author     Marko Cupic <m.cupic@gmx.ch>
