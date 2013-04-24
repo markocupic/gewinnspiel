@@ -41,7 +41,7 @@ class GenerateCodes extends BackendModule
         * tableless layout
         * @var bool
         */
-       protected $tableless = false;
+       protected $tableless = true;
 
        /**
         * default template
@@ -51,6 +51,8 @@ class GenerateCodes extends BackendModule
 
        public function compile()
        {
+              $GLOBALS['TL_CSS'][] = 'system/modules/gewinnspiel/assets/css/code_generator.css';
+
               $this->Template->mode = 'show_form';
               if ($_SESSION['gewinnspiel']['generate_codes'] && $_SESSION['gewinnspiel']['post']['confirm'] == 'yes')
               {
@@ -103,17 +105,21 @@ class GenerateCodes extends BackendModule
                             $this->Database->prepare('INSERT INTO tl_gewinnspiel_codes %s')->set($set)->executeUncached();
                             $m = ($m == 10 ? $m = 0 : $m);
                      }
+
                      $this->Template->mode = 'generated_codes';
+                     $this->Template->keys =  $arrCodes;
               }
               else
               {
                      // display the form
+                     $this->Template->tableless = $this->tableless;
                      $this->Template->formId = 'generate_codes';
                      $this->Template->action = $this->Environment->request;
                      $this->loadLanguageFile('generate_codes');
                      $this->loadDataContainer('generate_codes');
                      $dca = $GLOBALS['TL_DCA']['generate_codes'];
                      $arrFieldsFromDca = array('insert_mode', 'items', 'praefix', 'length', 'confirm', 'submit');
+                     $this->Template->submittedFields = implode(',', $arrFieldsFromDca);
                      $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'generate_codes');
               }
        }
@@ -133,6 +139,8 @@ class GenerateCodes extends BackendModule
                      // get the widget class from the dca
                      $widgetClass = 'Form' . ucfirst($arrField['inputType']);
                      $objWidget = new $widgetClass($this->prepareForWidget($arrField, $fieldname));
+                     // set the class property
+                     $objWidget->class = $arrField['eval']['class'];
                      if ($fieldname == 'submit')
                      {
                             $objWidget->slabel = $arrField['label'];

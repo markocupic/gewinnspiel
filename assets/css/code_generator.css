@@ -1,0 +1,29 @@
+.block {
+    display: block;
+}
+
+.warning {
+    color: red;
+}
+
+.submit {
+    padding: 5px;
+}
+
+.tl_formbody_edit .text,
+.tl_formbody_edit .select {
+    width: 40%;
+}
+
+.code_generator {
+    background-image: url('../images/key_generator.png');
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-bottom: 40px;
+}
+
+.confirmation {
+    min-height: 300px;
+    margin-left: 25px;
+    background-position: right top;
+}
