@@ -53,7 +53,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
               ),
               'label' => array
               (
-                     'fields' => array('preisAbgeholt', 'id', 'code'),
+                     'fields' => array('icon','preisEingeloest','id', 'code'),
                      'showColumns' => true,
                      //'format' => '<span style="#color#">[ID: %s] code: %s; locked: #locked#; #hasBeenPaidOn#</span>',
                      'label_callback' => array('tl_gewinnspiel_codes', 'labelCallback')
@@ -112,6 +112,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'search' => true,
                      'sorting' => true,
                      'inputType' => 'text',
+                     'flag' => 1,
                      'eval' => array('unique' => true, 'mandatory' => true, 'tl_class' => '', 'rgxp' => 'digit', 'readonly' => true),
               ),
               'code' => array
@@ -121,6 +122,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'search' => true,
                      'sorting' => true,
                      'inputType' => 'text',
+                     'flag' => 1,
                      'eval' => array('unique' => true, 'mandatory' => true, 'tl_class' => '', 'rgxp' => 'alnum'),
               ),
               'locked' => array
@@ -131,6 +133,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'sorting' => true,
                      'filter' => true,
                      'inputType' => 'checkbox',
+                     'flag' => 2,
                      'isBoolean' => true,
                      'eval' => array('submitOnChange' => true, 'tl_class' => ''),
               ),
@@ -142,6 +145,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'sorting' => true,
                      'filter' => true,
                      'inputType' => 'text',
+                     'flag' => 1,
                      'eval' => array('tl_class' => '', 'rgxp' => 'alnum', 'readonly' => true),
               ),
               'prizeGroup' => array
@@ -153,6 +157,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'filter' => true,
                      'inputType' => 'select',
                      'foreignKey' => 'tl_gewinnspiel_preise.CONCAT("[ID: ", id, "] " , name)',
+                     'flag' => 1,
                      'eval' => array('tl_class' => ''),
               ),
               'memberId' => array
@@ -163,6 +168,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'sorting' => true,
                      'filter' => true,
                      'inputType' => 'select',
+                     'flag' => 1,
                      'foreignKey' => 'tl_member.CONCAT("[ID: ", id, "] ", firstname ," ", lastname)',
                      'eval' => array('includeBlankOption' => true, 'tl_class' => ''),
               ),
@@ -174,6 +180,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'sorting' => true,
                      'filter' => true,
                      'inputType' => 'text',
+                     'flag' => 6,
                      'eval' => array('tl_class' => '', 'rgxp' => 'datim'),
               ),
               'validUntil' => array
@@ -184,6 +191,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'sorting' => true,
                      'filter' => true,
                      'inputType' => 'text',
+                     'flag' => 6,
                      'eval' => array('tl_class' => '', 'rgxp' => 'datim'),
               ),
               'hasBeenPaidOn' => array
@@ -194,6 +202,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'sorting' => true,
                      'filter' => true,
                      'inputType' => 'text',
+                     'flag' => 6,
                      'eval' => array('tl_class' => '', 'rgxp' => 'datim'),
               ),
               'hasBeenPaid' => array
@@ -204,6 +213,7 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
                      'sorting' => true,
                      'filter' => true,
                      'inputType' => 'checkbox',
+                     'flag' => 2,
                      'isBoolean' => true,
                      'eval' => array('submitOnChange' => true, 'tl_class' => ''),
               )
@@ -227,7 +237,9 @@ class tl_gewinnspiel_codes extends Backend
         */
        public function labelCallback($row, $label, DataContainer $dc, $args)
        {
-              $args[0] = $row['hasBeenPaid'] ? '<span style="color:red">Preis abgeholt: true</span>' : '<span>Preis abgeholt: false</span>';
+              $icon = $row['hasBeenPaid'] ? $this->getImage('system/modules/gewinnspiel/assets/images/accept.png', 11, 11) :  $this->getImage('system/modules/gewinnspiel/assets/images/wait.png', 11, 11);
+              $args[0] = $row['hasBeenPaid'] ? sprintf('<div class="list_icon_new" style="background-image:url(\'%s\'); color:green;">&nbsp;</div>', $icon) : sprintf('<div class="list_icon_new" style="background-image:url(\'%s\'); color:red;">&nbsp;</div>', $icon);
+              $args[1] = $row['hasBeenPaid'] ? '<div style="color:green">Preis eingelöst: ja</div>' : '<div>Preis eingelöst: nein</div>';
               return $args;
        }
 }
