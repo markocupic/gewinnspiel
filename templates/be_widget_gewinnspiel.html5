@@ -1,0 +1,4 @@
+
+<?php echo $this->generateLabel(); ?>
+<?php echo $this->generateWithError(); ?>
+<p class="tl_help tl_tip"><?php echo $this->explanation; ?></p><br>

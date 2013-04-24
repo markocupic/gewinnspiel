@@ -174,9 +174,9 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                             $this->loadLanguageFile('gewinnspiel');
                             $this->loadDataContainer('gewinnspiel');
                             $dca = $GLOBALS['TL_DCA']['gewinnspiel'];
-                            $arrFieldsFromDca = array('gender', 'firstname', 'lastname', 'email', 'code', 'captcha', 'agb', 'submit');
+                            $arrFieldsFromDca = array('gender', 'firstname', 'lastname', 'email', 'code', 'captcha', 'agb');
                             $this->Template->tableless = $this->tableless;
-                            $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'gewinnspiel');
+                            $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'gewinnspiel', '');
               }
        }
 

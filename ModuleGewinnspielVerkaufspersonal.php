@@ -118,9 +118,9 @@ class ModuleGewinnspielVerkaufspersonal extends ModuleGewinnspiel
                             // adapt the label
                             $GLOBALS['TL_DCA']['gewinnspiel']['fields']['code']['label'] = &$GLOBALS['TL_LANG']['gewinnspiel']['code_2'];
                             $dca = $GLOBALS['TL_DCA']['gewinnspiel'];
-                            $arrFieldsFromDca = array('code', 'submit');
+                            $arrFieldsFromDca = array('code');
                             $this->Template->tableless = $this->tableless;
-                            $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'gewinnspiel_preis_einloesen');
+                            $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'gewinnspiel_preis_einloesen', '');
                             break;
               }
        }

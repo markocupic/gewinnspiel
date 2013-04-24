@@ -107,7 +107,7 @@ class GenerateCodes extends BackendModule
                      }
 
                      $this->Template->mode = 'generated_codes';
-                     $this->Template->keys =  $arrCodes;
+                     $this->Template->keys = $arrCodes;
               }
               else
               {
@@ -118,13 +118,13 @@ class GenerateCodes extends BackendModule
                      $this->loadLanguageFile('generate_codes');
                      $this->loadDataContainer('generate_codes');
                      $dca = $GLOBALS['TL_DCA']['generate_codes'];
-                     $arrFieldsFromDca = array('insert_mode', 'items', 'praefix', 'length', 'confirm', 'submit');
+                     $arrFieldsFromDca = array('insert_mode', 'items', 'praefix', 'length', 'confirm');
                      $this->Template->submittedFields = implode(',', $arrFieldsFromDca);
-                     $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'generate_codes');
+                     $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'generate_codes', 'be_widget_gewinnspiel');
               }
        }
 
-       protected function generateFields($dca, $arrSelectedFields, $formId)
+       protected function generateFields($dca, $arrSelectedFields, $formId, $strTemplate = '')
        {
               $row = 0;
               $arrFields = array();
@@ -135,17 +135,25 @@ class GenerateCodes extends BackendModule
                      {
                             $dca['fields'][$fieldname]['eval']['tableless'] = true;
                      }
+                     // get the field array
                      $arrField = $dca['fields'][$fieldname];
-                     // get the widget class from the dca
+
+                     // get the widget class from the dca and create widget object
                      $widgetClass = 'Form' . ucfirst($arrField['inputType']);
                      $objWidget = new $widgetClass($this->prepareForWidget($arrField, $fieldname));
+
+                     // set widget template
+                     $objWidget->template = $strTemplate == '' ? $objWidget->template : $strTemplate;
+
+                     // set explanation
+                     $objWidget->explanation = $arrField['explanation'] ? $arrField['explanation'] : '';
+
                      // set the class property
                      $objWidget->class = $arrField['eval']['class'];
-                     if ($fieldname == 'submit')
-                     {
-                            $objWidget->slabel = $arrField['label'];
-                     }
+
+                     //set row class
                      $objWidget->rowClass = sprintf('row_%s  %s', $row, ($row % 2 == 0 ? 'even' : 'odd'));
+
                      // Validate widget
                      if ($this->Input->post('FORM_SUBMIT') == $formId)
                      {

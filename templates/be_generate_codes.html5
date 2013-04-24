@@ -13,20 +13,15 @@
 <input type="hidden" name="REQUEST_TOKEN" value="<?php echo REQUEST_TOKEN; ?>">
 <input type="hidden" name="FORM_FIELDS[]" value="<?php echo $this->submittedFields; ?>">
 
+<?php foreach ($this->arrFields as $fieldname => $field): ?>
+<div>
+<?php  echo $field; ?>
+</div>
+<?php endforeach; ?>
 
-<?php if ($this->tableless): ?>
-       <?php foreach ($this->arrFields as $fieldname => $field): ?>
-       <div>
-       <?php  echo $field; ?>
-       </div>
-       <?php endforeach; ?>
-<?php else: ?>
-       <table>
-       <?php foreach ($this->arrFields as $fieldname => $field): ?>
-       <?php  echo $field; ?>
-       <?php endforeach; ?>
-       </table>
-<?php endif; ?>
+<div class="submit_container">
+    <input type="submit" id="ctrl_submit" class="submit block" value="keys generieren" name="submit">
+</div>
 </div>
 </form>
 <?php endif; ?>
