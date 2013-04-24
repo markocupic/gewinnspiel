@@ -132,9 +132,10 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
        protected function compile()
        {
               global $objPage;
+              $this->loadLanguageFile('gewinnspiel');
+
               $this->Template->status = $this->status;
               $this->Template->userData = $this->userData ? $this->userData : array();
-              ;
 
               switch ($this->status)
               {
@@ -160,7 +161,6 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                                    unset($_SESSION['gewinnspiel_get_certificate']);
                             }
                             $this->Template->action = $this->generateFrontendUrl($objPage->row(), '/token/' . $this->Input->get('token'), $objPage->language);
-                            $this->loadLanguageFile('gewinnspiel');
                             $this->loadDataContainer('gewinnspiel');
                             $dca = $GLOBALS['TL_DCA']['gewinnspiel'];
                             $arrFieldsFromDca = array('code');
@@ -171,7 +171,6 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                             $this->Template->status = 'show_form';
                             $this->Template->formId = 'gewinnspiel';
                             $this->Template->action = $this->Environment->request;
-                            $this->loadLanguageFile('gewinnspiel');
                             $this->loadDataContainer('gewinnspiel');
                             $dca = $GLOBALS['TL_DCA']['gewinnspiel'];
                             $arrFieldsFromDca = array('gender', 'firstname', 'lastname', 'email', 'code', 'captcha', 'agb');
@@ -211,7 +210,7 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
               $email->priority = 'high';
               $email->charset = 'UTF-8';
               $email->from = $this->senderEmail;
-              $email->subject = 'Neuer registrierter Teilnehmer beim Gewinnspiel';
+              $email->subject = $GLOBALS['TL_LANG']['gewinnspiel']['email_subject_admin'];
               $objTemplate = new FrontendTemplate('mod_gewinnspiel_admin_email_notification');
               $objTemplate->userData = $this->userData;
               $email->html = $objTemplate->parse();
@@ -228,7 +227,7 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
               $email->priority = 'high';
               $email->charset = 'UTF-8';
               $email->from = $this->senderEmail;
-              $email->subject = 'Ihre Gewinnbestätigung';
+              $email->subject = $GLOBALS['TL_LANG']['gewinnspiel']['email_subject_user'];
               $objTemplate = new FrontendTemplate('mod_gewinnspiel_confirmation_email');
               $objTemplate->href = $this->Environment->base . $this->Environment->request . (($GLOBALS['TL_CONFIG']['disableAlias'] || strpos($this->Environment->request, '?') !== false) ? '&' : '?') . 'token=' . $this->userData['token'];
               $objTemplate->userData = $this->userData;

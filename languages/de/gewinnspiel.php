@@ -54,3 +54,7 @@ $GLOBALS['TL_LANG']['gewinnspiel']['einloesefrist_abgelaufen'] = 'Die Einlösefr
 $GLOBALS['TL_LANG']['gewinnspiel']['gutschein_bereits_eingeloest'] = 'Dem Kunden wurde der Preis bereits am %s ausbezahlt!';
 $GLOBALS['TL_LANG']['gewinnspiel']['kunden_auszahlen'] = 'Sie können den Kunden auszahlen, der Code ist gültig.';
 $GLOBALS['TL_LANG']['gewinnspiel']['form'] = 'Geben Sie den Teilnehmercode ein. Den Code finden Sie auf dem Gewinnzertifikat des Kunden.';
+
+//email
+$GLOBALS['TL_LANG']['gewinnspiel']['email_subject_user'] =  'Ihre Gewinnbestätigung';
+$GLOBALS['TL_LANG']['gewinnspiel']['email_subject_admin'] ='Neuer registrierter Teilnehmer beim Gewinnspiel';
