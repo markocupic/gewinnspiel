@@ -35,7 +35,6 @@ $GLOBALS['TL_LANG']['gewinnspiel']['email'] = 'E-Mail:';
 $GLOBALS['TL_LANG']['gewinnspiel']['code'] = 'Ihr Gewinncode:';
 $GLOBALS['TL_LANG']['gewinnspiel']['code_2'] = 'Gewinncode:';
 $GLOBALS['TL_LANG']['gewinnspiel']['captcha'] = 'Sicherheitsfrage';
-$GLOBALS['TL_LANG']['gewinnspiel']['submit'] = 'senden';
 $GLOBALS['TL_LANG']['gewinnspiel']['agb'] = 'Ich bin mit den Teilnahmebedingungen einverstanden.';
 $GLOBALS['TL_LANG']['gewinnspiel']['yes'] = 'ja';
 

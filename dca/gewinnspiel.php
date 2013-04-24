@@ -71,12 +71,5 @@ $GLOBALS['TL_DCA']['gewinnspiel'] = array(
                      'inputType' => 'captcha',
                      'eval' => array('class' => 'block')
               ),
-              'submit' => array
-              (
-                     'label' => &$GLOBALS['TL_LANG']['gewinnspiel']['submit'],
-                     'slabel' => &$GLOBALS['TL_LANG']['gewinnspiel']['submit'],
-                     'inputType' => 'submit',
-                     'eval' => array('class' => 'block')
-              )
        )
 );

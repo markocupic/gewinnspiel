@@ -28,11 +28,10 @@
  */
 
 // fields
-$GLOBALS['TL_LANG']['generate_codes']['insert_mode'] = 'Modus:';
-$GLOBALS['TL_LANG']['generate_codes']['items'] = 'Anzahl:';
+$GLOBALS['TL_LANG']['generate_codes']['insert_mode'] = array('Modus:', 'Entscheiden Sie, ob die Tabelle vor dem Anlegen der neuen keys gelöscht werden soll.');
+$GLOBALS['TL_LANG']['generate_codes']['items'] = array('Anzahl:', 'Wie viele keys sollen angelegt werden?');
 $GLOBALS['TL_LANG']['generate_codes']['praefix'] = 'Code-Präfix:';
-$GLOBALS['TL_LANG']['generate_codes']['length'] = 'Länge:';
-$GLOBALS['TL_LANG']['generate_codes']['submit'] = 'Codes generieren';
+$GLOBALS['TL_LANG']['generate_codes']['length'] = array('Key-Länge:', 'Maximale Länge ohne Präfix (40 Zeichen)');
 $GLOBALS['TL_LANG']['generate_codes']['confirm'] = 'Bestätigen Sie den Vorgang mit "yes"';
 
 //references

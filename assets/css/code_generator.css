@@ -12,7 +12,11 @@
 
 .tl_formbody_edit .text,
 .tl_formbody_edit .select {
-    width: 40%;
+    width: 45%;
+}
+.tl_formbody_edit label
+{
+    font-weight:bold;
 }
 
 .code_generator {

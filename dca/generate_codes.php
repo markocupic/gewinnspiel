@@ -26,7 +26,8 @@ $GLOBALS['TL_DCA']['generate_codes'] = array(
        'fields' => array(
               'insert_mode' => array
               (
-                     'label' => &$GLOBALS['TL_LANG']['generate_codes']['insert_mode'],
+                     'label' => &$GLOBALS['TL_LANG']['generate_codes']['insert_mode'][0],
+                     'explanation' => &$GLOBALS['TL_LANG']['generate_codes']['insert_mode'][1],
                      'reference' => &$GLOBALS['TL_LANG']['generate_codes'],
                      'inputType' => 'selectMenu',
                      'options' => array('append_rows', 'delete_table'),
@@ -34,7 +35,8 @@ $GLOBALS['TL_DCA']['generate_codes'] = array(
               ),
               'items' => array
               (
-                     'label' => &$GLOBALS['TL_LANG']['generate_codes']['items'],
+                     'label' => &$GLOBALS['TL_LANG']['generate_codes']['items'][0],
+                     'explanation' => &$GLOBALS['TL_LANG']['generate_codes']['items'][1],
                      'inputType' => 'textField',
                      'eval' => array('class' => 'block', 'rgxp' => 'digit', 'required' => true)
               ),
@@ -46,7 +48,8 @@ $GLOBALS['TL_DCA']['generate_codes'] = array(
               ),
               'length' => array
               (
-                     'label' => &$GLOBALS['TL_LANG']['generate_codes']['length'],
+                     'label' => &$GLOBALS['TL_LANG']['generate_codes']['length'][0],
+                     'explanation' => &$GLOBALS['TL_LANG']['generate_codes']['length'][1],
                      'inputType' => 'textField',
                      'eval' => array('class' => 'block', 'required' => true, 'rgxp' => 'digit')
               ),
@@ -56,12 +59,5 @@ $GLOBALS['TL_DCA']['generate_codes'] = array(
                      'inputType' => 'textField',
                      'eval' => array('class' => 'block', 'required' => true, 'rgxp' => 'alpha', 'maxlength' => 3)
               ),
-              'submit' => array
-              (
-                     'label' => &$GLOBALS['TL_LANG']['generate_codes']['submit'],
-                     'slabel' => &$GLOBALS['TL_LANG']['generate_codes']['submit'],
-                     'inputType' => 'submit',
-                     'eval' => array('class' => 'block')
-              )
        )
 );
