@@ -76,17 +76,24 @@
         <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
         <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
 <?php if (!$this->tableless): ?>
-       <table>
-       <?php foreach ($this->arrFields as $fieldname => $field): ?>
-       <?php  echo $field; ?>
-       <?php endforeach; ?>
-       </table>
+    <table>
+        <?php foreach ($this->arrFields as $fieldname => $field): ?>
+        <?php  echo $field; ?>
+        <?php endforeach; ?>
+        <tr class="<?php echo $this->rowLast; ?>">
+            <td class="col_0 col_first">&nbsp;</td>
+            <td class="col_1 col_last"><div class="submit_container"><input type="submit" class="submit" value="Formular absenden"></div></td>
+        </tr>
+    </table>
 <?php else: ?>
-       <div class="fields">
-       <?php foreach ($this->arrFields as $fieldname => $field): ?>
-       <?php echo $field; ?>
-       <?php endforeach; ?>
-       </div>
+        <div class="fields">
+        <?php foreach ($this->arrFields as $fieldname => $field): ?>
+        <?php echo $field; ?>
+        <?php endforeach; ?>
+        </div>
+        <div class="submit_container">
+        <input type="submit" class="submit" value="Formular absenden">
+        </div>
 <?php endif; ?>
     </div>
 </form>

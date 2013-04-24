@@ -163,9 +163,9 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                             $this->loadLanguageFile('gewinnspiel');
                             $this->loadDataContainer('gewinnspiel');
                             $dca = $GLOBALS['TL_DCA']['gewinnspiel'];
-                            $arrFieldsFromDca = array('code', 'submit');
+                            $arrFieldsFromDca = array('code');
                             $this->Template->tableless = $this->tableless;
-                            $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'gewinnspiel');
+                            $this->Template->arrFields = $this->generateFields($dca, $arrFieldsFromDca, 'gewinnspiel', '');
                             break;
                      default:
                             $this->Template->status = 'show_form';
