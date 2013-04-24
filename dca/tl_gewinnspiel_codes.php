@@ -46,13 +46,16 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
        (
               'sorting' => array
               (
+                     'mode' => 2,
+                     'flag' => 1,
                      'panelLayout' => 'filter;sort,search,limit',
                      'fields' => array('id ASC')
               ),
               'label' => array
               (
-                     'fields' => array('id', 'code'),
-                     'format' => '<span style="#color#">[ID: %s] code: %s; locked: #locked#; #hasBeenPaidOn#</span>',
+                     'fields' => array('preisAbgeholt', 'id', 'code'),
+                     'showColumns' => true,
+                     //'format' => '<span style="#color#">[ID: %s] code: %s; locked: #locked#; #hasBeenPaidOn#</span>',
                      'label_callback' => array('tl_gewinnspiel_codes', 'labelCallback')
               ),
               'global_operations' => array
@@ -91,15 +94,14 @@ $GLOBALS['TL_DCA']['tl_gewinnspiel_codes'] = array
        // Palettes
        'palettes' => array
        (
-              '__selector__'       => array('hasBeenPaid', 'locked'),
-              'default'            => 'id,code,prizeGroup,locked,hasBeenPaid'
+              '__selector__' => array('hasBeenPaid', 'locked'),
+              'default' => 'id,code,prizeGroup,locked,hasBeenPaid'
        ),
        // Subpalettes
        'subpalettes' => array(
               'hasBeenPaid' => 'hasBeenPaidOn',
-              'locked'      => 'token,validUntil,memberId,enteredCodeOn',
+              'locked' => 'token,validUntil,memberId,enteredCodeOn',
        ),
-
        // Fields
        'fields' => array
        (
@@ -219,16 +221,13 @@ class tl_gewinnspiel_codes extends Backend
        /**
         * @param array
         * @param string
+        * @param DataContainer
+        * @param array
         * @return string
         */
-       public function labelCallback($row, $label)
+       public function labelCallback($row, $label, DataContainer $dc, $args)
        {
-              $locked = $row['locked'] ? '1' : '0';
-              $color = $row['locked'] ? 'color:red; ' : '';
-              $hasBeenPaidOn = $row['hasBeenPaidOn'] ? sprintf('Preis abgeholt am: %s', date('Y-m-d', $row['hasBeenPaidOn'])) : '';
-              $label = str_replace('#color#', $color, $label);
-              $label = str_replace('#locked#', $locked, $label);
-              $label = str_replace('#hasBeenPaidOn#', $hasBeenPaidOn, $label);
-              return $label;
+              $args[0] = $row['hasBeenPaid'] ? '<span style="color:red">Preis abgeholt: true</span>' : '<span>Preis abgeholt: false</span>';
+              return $args;
        }
 }
