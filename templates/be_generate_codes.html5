@@ -8,7 +8,10 @@
 <form action="<?php echo $this->action; ?>" id="<?php echo $this->formId; ?>" class="tl_form" method="post" enctype="application/x-www-form-urlencoded">
 
 <div class="tl_formbody_edit code_generator">
-<h3 class="warning">Bitte führen Sie den Vorgang nur aus, wenn Sie sich dessen Auswirkungen klar bewusst sind!</h3>
+<h3 class="warning">Bitte führen Sie den Vorgang nur aus, wenn Sie sich über dessen Auswirkungen klar bewusst sind!</h3>
+    <div class="warningbox">
+        <p>Dieser Vorgang befüllt die Tabelle "tl_gewinnspiel_codes" mit neuen Gewinncodes. Ein laufender Wettbewerb sollte <u>unbedingt</u> abgeschlossen sein, da ansonten das Modul nicht mehr funktionieren würde.</p>
+    </div>
 <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
 <input type="hidden" name="REQUEST_TOKEN" value="<?php echo REQUEST_TOKEN; ?>">
 <input type="hidden" name="FORM_FIELDS[]" value="<?php echo $this->submittedFields; ?>">

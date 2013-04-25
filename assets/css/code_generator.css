@@ -14,9 +14,13 @@
 .tl_formbody_edit .select {
     width: 45%;
 }
-.tl_formbody_edit label
-{
-    font-weight:bold;
+
+.tl_formbody_edit label {
+    font-weight: bold;
+}
+
+.select {
+    margin-bottom: 6px;
 }
 
 .code_generator {
@@ -30,4 +34,16 @@
     min-height: 300px;
     margin-left: 25px;
     background-position: right top;
+}
+
+.warningbox {
+    border: 1px solid #666;
+    background-color: rgba(255, 117, 119, 0.56);
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.warningbox p {
+    color: #666;
+    font-size: 11px;
 }
