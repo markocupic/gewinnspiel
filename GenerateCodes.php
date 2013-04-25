@@ -49,6 +49,9 @@ class GenerateCodes extends BackendModule
         */
        protected $strTemplate = 'be_generate_codes';
 
+       /**
+        * Generate Module
+        */
        public function compile()
        {
               $GLOBALS['TL_CSS'][] = 'system/modules/gewinnspiel/assets/css/code_generator.css';
@@ -124,6 +127,14 @@ class GenerateCodes extends BackendModule
               }
        }
 
+       /**
+        * Parse Form Fields using the FormWidget classes
+        * @param array $dca
+        * @param array $arrSelectedField
+        * @param string $formId
+        * @param string $strTemplate
+        * @return array
+        */
        protected function generateFields($dca, $arrSelectedFields, $formId, $strTemplate = '')
        {
               $row = 0;

@@ -64,6 +64,7 @@ abstract class ModuleGewinnspiel extends Module
         * @param array $dca
         * @param array $arrSelectedField
         * @param string $formId
+        * @param string $strTemplate
         * @return array
         */
        protected function generateFields($dca, $arrSelectedFields, $formId, $strTemplate = '')
