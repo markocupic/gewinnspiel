@@ -80,7 +80,8 @@
 <!-- Container wird mit js eingeblendet, wenn code gültig ist -->
 <div class="download_erfolgreich" style="display:none">
     <!-- Alternativ lassen sich mit Insert Tags sehr bequem angelegte Artikel einbinden -->
-    <!-- {{insert_article::hier_kommt_der_artikel_alias}} -->
+    <!-- {{insert_article::hier_kommt_der_artikel_alias oder die id}} -->
+    <!-- {{insert_article::418}} -->
     <p class="message">Bitte drucken Sie das Zertifikat aus und melden Sie sich damit in einer unserer Filialen.</p>
 </div>
 <!-- end eingeblendeter Container -->
