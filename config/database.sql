@@ -50,6 +50,7 @@ CREATE TABLE `tl_gewinnspiel_preise` (
 CREATE TABLE `tl_module` (
   `addUserToAvisotaRecipientList` varchar(128) NOT NULL default '',
   `senderEmail` text NULL,
+  `adminNotificationEmail` text NULL,
   `prizeImagesFolder` varchar(256) NOT NULL default '',
   `validUntil` int(10) NOT NULL default '0',
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

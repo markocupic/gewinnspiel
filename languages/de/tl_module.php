@@ -30,6 +30,8 @@
 // fields
 $GLOBALS['TL_LANG']['tl_module']['addUserToAvisotaRecipientList'] = array('Aufnahme in Avisota Newsletter-Verteiler');
 $GLOBALS['TL_LANG']['tl_module']['senderEmail'] = array('Absender-Adresse der Gewinnbestätigungs-Nachricht');
+$GLOBALS['TL_LANG']['tl_module']['adminNotificationEmail'] = array('Admin benachrichtigen', 'Bitte geben Sie eine kommaseparierte Liste mit Empfängern an, die benachrichtigt werden sollen, sobald sich ein Teilnehmer neu registriert hat.');
+
 $GLOBALS['TL_LANG']['tl_module']['prizeImagesFolder'] = array('Verzeichnis für die Preis-Bilder','Wählen Sie das Verzeichnis aus, in welchem das System die Preis-Bilder finden kann.');
 $GLOBALS['TL_LANG']['tl_module']['validUntil'] = array('Gutschein im Ladengeschäft einlösbar bis XX Tage nach der Registrierung');
 

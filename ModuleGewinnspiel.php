@@ -71,50 +71,46 @@ abstract class ModuleGewinnspiel extends Module
        {
               $row = 0;
               $arrFields = array();
-              foreach ($arrSelectedFields as $fieldname)
-              {
+              foreach ($arrSelectedFields as $fieldname) {
+                     $hasError = false;
                      //tableless or not
-                     if ($this->tableless)
-                     {
+                     if ($this->tableless) {
                             $dca['fields'][$fieldname]['eval']['tableless'] = true;
                      }
                      // get the field array
                      $arrField = $dca['fields'][$fieldname];
-
                      // get the widget class from the dca and create widget object
                      $widgetClass = 'Form' . ucfirst($arrField['inputType']);
                      $objWidget = new $widgetClass($this->prepareForWidget($arrField, $fieldname));
-
                      // set widget template
                      $objWidget->template = $strTemplate == '' ? $objWidget->template : $strTemplate;
-
                      // set explanation
                      $objWidget->explanation = $arrField['explanation'] ? $arrField['explanation'] : '';
-
                      // set the class property
                      $objWidget->class = $arrField['eval']['class'];
-
                      //set row class
                      $objWidget->rowClass = sprintf('row_%s  %s', $row, ($row % 2 == 0 ? 'even' : 'odd'));
-
                      // Validate widget
-                     if ($this->Input->post('FORM_SUBMIT') == $formId)
-                     {
+                     if ($this->Input->post('FORM_SUBMIT') == $formId) {
                             $objWidget->validate();
-                            if ($objWidget->hasErrors())
-                            {
+                            if ($objWidget->hasErrors()) {
                                    $objWidget->value = '';
-                                   $objWidget->addError($GLOBALS['TL_LANG']['ERR']['invalidPass']);
                                    $hasError = true;
                             }
+                     }
+
+                     // add value to the fields
+                     if ($fieldname != 'code') {
+                            $objWidget->value = isset($this->userData[$fieldname]) ? $this->userData[$fieldname] : '';
+                     } else {
+                            $objWidget->value = '';
                      }
                      $arrFields[$fieldname] = $objWidget->parse();
                      $row++;
               }
               // if all forms are filled correctly check the code and reload the page
               // the code status will be found in the session
-              if (!$hasError && $this->Input->post('FORM_SUBMIT') == $formId)
-              {
+              if (!$hasError && $this->Input->post('FORM_SUBMIT') == $formId) {
                      $this->validateCode($this->Input->post('code'));
                      $this->reload();
               }

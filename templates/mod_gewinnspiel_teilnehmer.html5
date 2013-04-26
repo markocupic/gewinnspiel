@@ -8,7 +8,14 @@
 
 
 
+
+
+
 <?php if ($this->status == 'show_form'): ?>
+<?php if ($this->errorMessage): ?>
+<p class="error_message"><?php echo $this->errorMessage; ?></p>
+<?php endif; ?>
+
 <form<?php if ($this->action): ?> action="<?php echo $this->action; ?>"<?php endif; ?> id="<?php echo $this->formId; ?>" method="post">
 <div class="formbody">
     <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
@@ -39,6 +46,11 @@
 
 
 
+
+
+
+
+
 <?php if ($this->status == 'gewonnen'): ?>
 <h2>Herzliche Gratulation, Sie haben gewonnen!</h2>
 <p>In Kürze erhalten Sie eine email mit dem Link zum Gewinnerzertifikat, welches Sie im Geschäft einlösen können.</p>
@@ -53,26 +65,29 @@
 <?php endif; ?>
 
 
-<?php if ($this->status == 'kein_gewinn'): ?>
-<h2>Ihr Code erzielte leider keinen Gewinn.</h2>
-<?php endif; ?>
 
 
 
-<?php if ($this->status == 'code_bereits_eingeloest'): ?>
-<h2>Dieser Code wurde bereits eingelöst.</h2>
-<?php endif; ?>
+
 
 
 
 <?php if ($this->status == 'show_certificate_form'): ?>
-<?php if ($this->message) : ?>
-    <p><?php echo $this->message; ?></p>
+<?php if ($this->errorMessage) : ?>
+    <p class="error_message"><?php echo $this->errorMessage; ?></p>
 <?php endif; ?>
 
-<p>Bitte geben Sie, um sich zu authentifizieren Ihren Gewinncode ein.</p>
-<form<?php if ($this->action): ?> action="<?php echo $this->action; ?>"<?php endif; ?> onsubmit="this.fade(0)" id="<?php echo $this->formId; ?>" method="post">
+<!-- Container wird mit js eingeblendet, wenn code gültig ist -->
+<div class="download_erfolgreich" style="display:none">
+    <!-- Alternativ lassen sich mit Insert Tags sehr bequem angelegte Artikel einbinden -->
+    <!-- {{insert_article::hier_kommt_der_artikel_alias}} -->
+    <p class="message">Bitte drucken Sie das Zertifikat aus und melden Sie sich damit in einer unserer Filialen.</p>
+</div>
+<!-- end eingeblendeter Container -->
+
+<form<?php if ($this->action): ?> action="<?php echo $this->action; ?>"<?php endif; ?> onsubmit="toggleDiv(this);" id="<?php echo $this->formId; ?>" method="post">
     <div class="formbody">
+        <p>Bitte geben Sie, um sich zu authentifizieren Ihren Gewinncode ein.</p>
         <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
         <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
 <?php if (!$this->tableless): ?>
@@ -82,7 +97,7 @@
         <?php endforeach; ?>
         <tr class="<?php echo $this->rowLast; ?>">
             <td class="col_0 col_first">&nbsp;</td>
-            <td class="col_1 col_last"><div class="submit_container"><input type="submit" class="submit" value="Formular absenden"></div></td>
+            <td class="col_1 col_last"><div class="submit_container"><input type="submit" class="submit" value="Gewinnzertifikat herunterladen"></div></td>
         </tr>
     </table>
 <?php else: ?>
@@ -92,11 +107,20 @@
         <?php endforeach; ?>
         </div>
         <div class="submit_container">
-        <input type="submit" class="submit" value="Formular absenden">
+        <input type="submit" class="submit" value="Gewinnzertifikat herunterladen">
         </div>
 <?php endif; ?>
     </div>
 </form>
+<script type="text/javascript">
+function toggleDiv (el)
+{
+    el.fade(0);
+    $$('.download_erfolgreich').setStyle('opacity',0);
+    $$('.download_erfolgreich').setStyle('display','inline');
+    $$('.download_erfolgreich').fade(1);
+}
+</script>
 <?php endif; ?>
 
 

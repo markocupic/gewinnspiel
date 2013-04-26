@@ -41,6 +41,13 @@ $GLOBALS['TL_LANG']['gewinnspiel']['yes'] = 'ja';
 // add errors
 $GLOBALS['TL_LANG']['gewinnspiel']['error_agb'] = 'Bitte bestätigen Sie die Teilnahmebedingungen.';
 $GLOBALS['TL_LANG']['gewinnspiel']['error_gender'] = 'Bitte geben Sie Ihre Anrede an.';
+$GLOBALS['TL_LANG']['gewinnspiel']['kein_gewinn'] = 'Leider kein Gewinncode. Wollen Sie es nochmals probieren?';
+$GLOBALS['TL_LANG']['gewinnspiel']['code_bereits_eingeloest'] = 'Dieser Code wurde bereits einmal von einem Teilnehmer verwendet und ist ungültig. Wollen Sie es nochmals probieren?';
+$GLOBALS['TL_LANG']['gewinnspiel']['token_invalid_code'] = 'Code ungültig. Bitte probieren Sie es nochmals.';
+$GLOBALS['TL_LANG']['gewinnspiel']['token_gewinn_bereits_ausbezahlt'] = 'Dieser Gewinn wurde bereits ausbezahlt. Das Zertifikat kann nicht mehr bezogen werden.';
+
+
+
 
 //references
 $GLOBALS['TL_LANG']['gewinnspiel']['male'] = 'Herr';

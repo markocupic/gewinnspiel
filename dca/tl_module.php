@@ -31,7 +31,7 @@
 /**
  * Add palettes to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['gewinnspiel_teilnehmer'] = '{title_legend},name,headline,type;{form_layout},tableless;{config_legend},addUserToAvisotaRecipientList,senderEmail,prizeImagesFolder,validUntil;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['gewinnspiel_teilnehmer'] = '{title_legend},name,headline,type;{form_layout},tableless;{config_legend},addUserToAvisotaRecipientList,senderEmail,adminNotificationEmail,prizeImagesFolder,validUntil;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['gewinnspiel_verkaufspersonal'] = '{title_legend},name,headline,type;{form_layout},tableless;{config_legend},prizeImagesFolder;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 /**
@@ -53,6 +53,11 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['senderEmail'] = array(
        'label' => &$GLOBALS['TL_LANG']['tl_module']['senderEmail'],
        'inputType' => 'text',
        'eval' => array('mandatory' => true, 'rgxp' => 'email', 'class' => 'long clr')
+);
+$GLOBALS['TL_DCA']['tl_module']['fields']['adminNotificationEmail'] = array(
+       'label' => &$GLOBALS['TL_LANG']['tl_module']['adminNotificationEmail'],
+       'inputType' => 'text',
+       'eval' => array('mandatory' => false, 'class' => 'alpha')
 );
 
 $GLOBALS['TL_DCA']['tl_module']['fields']['prizeImagesFolder'] = array(
