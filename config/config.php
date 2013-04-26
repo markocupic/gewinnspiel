@@ -44,7 +44,7 @@ $GLOBALS['BE_MOD']['gewinnspiel']['tl_gewinnspiel_codes'] = array(
 );
 $GLOBALS['BE_MOD']['gewinnspiel']['generate_codes'] = array
 (
-       'icon' => 'system/modules/my_be_zwischenziele/html/award_star_gold.png',
+       'icon' => 'system/modules/gewinnspiel/assets/images/award_star_gold.png',
        'callback' => 'GenerateCodes'
 );
 
