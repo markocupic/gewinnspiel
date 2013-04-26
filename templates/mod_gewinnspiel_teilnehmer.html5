@@ -81,8 +81,11 @@
 <div class="download_erfolgreich" style="display:none">
     <!-- Alternativ lassen sich mit Insert Tags sehr bequem angelegte Artikel einbinden -->
     <!-- {{insert_article::hier_kommt_der_artikel_alias oder die id}} -->
+    <img src="<?php echo $this->userData['prizePhoto']; ?>" alt="Ihr Gewinn" width="200">
     <!-- {{insert_article::418}} -->
-    <p class="message">Bitte drucken Sie das Zertifikat aus und melden Sie sich damit in einer unserer Filialen.</p>
+    <p class="message">Dieser Preis gehört bald Ihnen! Bitte drucken Sie das Zertifikat aus und melden Sie sich Ihren Preis in einer unserer Filialen.</p>
+    <p class="message">Mit Freundlichen Grüssen</p>
+    <p class="message">Ihr freyuhren-Team</p>
 </div>
 <!-- end eingeblendeter Container -->
 

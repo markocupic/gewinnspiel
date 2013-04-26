@@ -118,12 +118,43 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                             break;
                      case 'show_certificate_form':
                             $this->Template->formId = 'gewinnspiel_get_certificate';
+
                             // display error messages
                             if ($_SESSION['gewinnspiel_get_certificate']['error']) {
                                    $errorType = $_SESSION['gewinnspiel_get_certificate']['error'];
                                    $this->Template->errorMessage = $GLOBALS['TL_LANG']['gewinnspiel'][$errorType];
                                    unset($_SESSION['gewinnspiel_get_certificate']);
                             }
+
+                            $userData = array();
+
+                            // tl_gewinnspiel_codes
+                            $objCode = $this->Database->prepare('SELECT * FROM tl_gewinnspiel_codes WHERE token = ?')->execute($this->Input->get('token'));
+                            while ($objCode->next()) {
+                                   $userData['codeId'] = $objCode->prizeGroup;
+                                   $userData['prizeId'] = $objCode->prizeGroup;
+                                   $userData['memberId'] = $objCode->memberId;
+                                   $userData['prizePhoto'] = $this->prizeImagesFolder . '/' . sprintf('preis_%s.jpg', $objCode->prizeGroup);
+                            }
+
+                            // tl_gewinnspiel_preise
+                            $objPrize = $this->Database->prepare('SELECT * FROM tl_gewinnspiel_preise WHERE id = ?')->execute($objCode->prizeGroup);
+                            while ($objPrize->next()) {
+                                   $userData['prizeName'] = $objPrize->name;
+                                   $userData['prizeDescription'] = $objPrize->description;
+                            }
+
+                            //tl_member
+                            $objMember = $this->Database->prepare('SELECT * FROM tl_member WHERE id = ?')->execute($objCode->memberId);
+                            while ($objMember->next()) {
+                                   $userData['firstname'] = $objMember->firstname;
+                                   $userData['lastname'] = $objMember->lastname;
+                                   $userData['email'] = $objMember->email;
+                            }
+
+                            // assign information to template var
+                            $this->Template->userData = $userData;
+
                             $this->Template->action = $this->Environment->base . $this->Environment->request;
                             $this->loadDataContainer('gewinnspiel');
                             $dca = $GLOBALS['TL_DCA']['gewinnspiel'];
@@ -181,7 +212,6 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
        protected function sendAdminEmailNotification()
        {
               if ($this->adminNotificationEmail == '') return;
-              
               if (null !== is_array(explode(',', $this->adminNotificationEmail))) {
                      $arrTo = explode(',', $this->adminNotificationEmail);
                      $email = new Email;
