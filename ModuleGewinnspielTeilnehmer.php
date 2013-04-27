@@ -103,7 +103,6 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
         */
        protected function compile()
        {
-              global $objPage;
               $this->loadLanguageFile('gewinnspiel');
               $this->Template->status = $this->status;
               $this->Template->userData = $this->userData ? $this->userData : array();
@@ -232,7 +231,6 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
         */
        protected function sendConfirmationEmail()
        {
-              global $objPage;
               $email = new Email;
               $email->priority = 'high';
               $email->charset = 'UTF-8';
