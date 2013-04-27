@@ -73,24 +73,28 @@
 
 
 <?php if ($this->status == 'show_certificate_form'): ?>
-<?php if ($this->errorMessage) : ?>
-    <p class="error_message"><?php echo $this->errorMessage; ?></p>
-<?php endif; ?>
 
 <!-- Container wird mit js eingeblendet, wenn code gültig ist -->
 <div class="download_erfolgreich" style="display:none">
+    <!-- Das Foto -->
+    <img src="<?php echo $this->userData['prizePhoto']; ?>" alt="Ihr Gewinn" width="200">
     <!-- Alternativ lassen sich mit Insert Tags sehr bequem angelegte Artikel einbinden -->
     <!-- {{insert_article::hier_kommt_der_artikel_alias oder die id}} -->
-    <img src="<?php echo $this->userData['prizePhoto']; ?>" alt="Ihr Gewinn" width="200">
-    <!-- {{insert_article::418}} -->
+    {{insert_article::418}}
+    <!--
     <p class="message">Dieser Preis gehört bald Ihnen! Bitte drucken Sie das Zertifikat aus und melden Sie sich Ihren Preis in einer unserer Filialen.</p>
     <p class="message">Mit Freundlichen Grüssen</p>
     <p class="message">Ihr freyuhren-Team</p>
+    -->
 </div>
 <!-- end eingeblendeter Container -->
 
+
 <form<?php if ($this->action): ?> action="<?php echo $this->action; ?>"<?php endif; ?> onsubmit="toggleDiv(this);" id="<?php echo $this->formId; ?>" method="post">
     <div class="formbody">
+       <?php if ($this->errorMessage) : ?>
+       <p class="error_message"><?php echo $this->errorMessage; ?></p>
+       <?php endif; ?>
         <p>Bitte geben Sie, um sich zu authentifizieren Ihren Gewinncode ein.</p>
         <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
         <input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
@@ -117,12 +121,20 @@
     </div>
 </form>
 <script type="text/javascript">
-function toggleDiv (el)
+function toggleDiv (form)
 {
-    el.fade(0);
-    $$('.download_erfolgreich').setStyle('opacity',0);
-    $$('.download_erfolgreich').setStyle('display','inline');
-    $$('.download_erfolgreich').fade(1);
+    var toggler = (function()
+    {
+        form.fade(0);
+           $$('.download_erfolgreich').setStyle('opacity',0);
+           $$('.download_erfolgreich').setStyle('display','inline');
+           $$('.download_erfolgreich').fade(1);
+    }.delay(2000));
+
+    var destroyForm = (function()
+    {
+        form.destroy();
+    }.delay(4000));
 }
 </script>
 <?php endif; ?>

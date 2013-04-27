@@ -135,6 +135,7 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                                    $userData['prizeId'] = $objCode->prizeGroup;
                                    $userData['memberId'] = $objCode->memberId;
                                    $userData['prizePhoto'] = $this->prizeImagesFolder . '/' . sprintf('preis_%s.jpg', $objCode->prizeGroup);
+                                   $userData['validUntil'] = $objCode->validUntil;
                             }
 
                             // tl_gewinnspiel_preise
