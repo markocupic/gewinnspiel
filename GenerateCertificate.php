@@ -72,18 +72,20 @@ class GenerateCertificate extends Controller
               $pdf->Cell(190, 8, utf8_decode("Gewinnbestätigung"), 'B', '', 'L');
               $pdf->Ln();
               $pdf->Ln();
-              
+
               // add prize image
               $headerLogo = $objModule->prizeImagesFolder . '/certificate_banner.jpg';
               if (file_exists(TL_ROOT . '/' . $headerLogo))
               {
                      $pdf->Image(TL_ROOT . '/' . $headerLogo, 10, 20, 190, 0, '', '');
-              } else {
+              }
+              else
+              {
                      // default image
                      $bannerSrc = 'system/modules/gewinnspiel/assets/images/certificate_banner.jpg';
                      $pdf->Image(TL_ROOT . '/' . $bannerSrc, 10, 20, 190, 0, '', '');
               }
-              
+
               // generate Barcode code128
               $tmp_filename_barcode = 'system/tmp/' . md5(time()) . '.png';
               $this->generateBarcode(TL_ROOT . '/' . $tmp_filename_barcode, $strCodeDecoded, 'code128');
@@ -141,7 +143,7 @@ class GenerateCertificate extends Controller
               $pdf->Cell(190, 8, "Ihr Preis:", '', '', 'L');
               $pdf->Ln();
               $pdf->SetFont('Arial', '', 12);
-              $pdf->MultiCell(190, 8, utf8_decode($objPrize->description), '', '', 'L');
+              $pdf->MultiCell(190, 8, utf8_decode(html_entity_decode($objPrize->description)), '', '', 'L');
               $pdf->Ln();
 
               // add prize image
@@ -157,8 +159,6 @@ class GenerateCertificate extends Controller
               $pdf->Ln();
               $pdf->SetFont('Arial', '', 12);
               $pdf->Cell(190, 8, date('d.m.Y', $objCode->validUntil), '', '', 'L');
-
-              
 
               /*
               // generate Barcode QR
