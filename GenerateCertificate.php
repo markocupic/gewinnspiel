@@ -72,15 +72,34 @@ class GenerateCertificate extends Controller
               $pdf->Cell(190, 8, utf8_decode("Gewinnbestätigung"), 'B', '', 'L');
               $pdf->Ln();
               $pdf->Ln();
-
-              // add header logo image
-              $bannerSrc = 'system/modules/gewinnspiel/assets/images/banner_logo.png';
-              if (file_exists(TL_ROOT . '/' . $bannerSrc))
+              
+              // add prize image
+              $headerLogo = $objModule->prizeImagesFolder . '/certificate_banner.jpg';
+              if (file_exists(TL_ROOT . '/' . $headerLogo))
               {
+                     $pdf->Image(TL_ROOT . '/' . $headerLogo, 10, 20, 190, 0, '', '');
+              } else {
+                     // default image
+                     $bannerSrc = 'system/modules/gewinnspiel/assets/images/certificate_banner.jpg';
                      $pdf->Image(TL_ROOT . '/' . $bannerSrc, 10, 20, 190, 0, '', '');
               }
+              
+              // generate Barcode code128
+              $tmp_filename_barcode = 'system/tmp/' . md5(time()) . '.png';
+              $this->generateBarcode(TL_ROOT . '/' . $tmp_filename_barcode, $strCodeDecoded, 'code128');
+              //check if tmp-dir is writable
+              if (!is_file(TL_ROOT . '/' . $tmp_filename_barcode))
+              {
+                     $error_message = 'Probably the system/tmp directory is not writable. Error in ' . __FILE__ . ' on ' . __LINE__ . ' at ' . __METHOD__ . '()';
+                     $this->log('Probably the system/tmp directory is not writable. Error in ' . __FILE__ . ' on ' . __LINE__ . ' at ' . __METHOD__ . '()', __METHOD__, TL_ERROR);
+                     die($error_message);
+              }
 
-              $pdf->SetY(100);
+              $pdf->Image(TL_ROOT . '/' . $tmp_filename_barcode, 10, 90, 0, 0, '', '');
+              $objFile = new File($tmp_filename_barcode);
+              $objFile->delete();
+
+              $pdf->SetY(110);
               // add a new embeded font
               //$pdf->addFont('Itckrist', '', 'ITCKRIST.php');
               //$pdf->SetFont('Itckrist', '', 14);
@@ -92,7 +111,6 @@ class GenerateCertificate extends Controller
               $pdf->SetFont('Arial', '', 12);
               $pdf->Cell(190, 8, $objMember->gender == 'female' ? 'Frau' : 'Herr', '', '', 'L');
               $pdf->Ln();
-              $pdf->Ln();
 
               // name
               $pdf->SetFont('Arial', 'B', 12);
@@ -100,7 +118,6 @@ class GenerateCertificate extends Controller
               $pdf->Ln();
               $pdf->SetFont('Arial', '', 12);
               $pdf->Cell(190, 8, utf8_decode($objMember->firstname . ' ' . $objMember->lastname), '', '', 'L');
-              $pdf->Ln();
               $pdf->Ln();
 
               // email
@@ -110,7 +127,6 @@ class GenerateCertificate extends Controller
               $pdf->SetFont('Arial', '', 12);
               $pdf->Cell(190, 8, $objMember->email, '', '', 'L');
               $pdf->Ln();
-              $pdf->Ln();
 
               // winner code
               $pdf->SetFont('Arial', 'B', 12);
@@ -118,7 +134,6 @@ class GenerateCertificate extends Controller
               $pdf->Ln();
               $pdf->SetFont('Arial', '', 12);
               $pdf->Cell(190, 8, $strCodeDecoded, '', '', 'L');
-              $pdf->Ln();
               $pdf->Ln();
 
               // Prize
@@ -133,7 +148,7 @@ class GenerateCertificate extends Controller
               $prizeSrc = $objModule->prizeImagesFolder . '/preis_' . $objCode->prizeGroup . '.jpg';
               if (file_exists(TL_ROOT . '/' . $prizeSrc))
               {
-                     $pdf->Image(TL_ROOT . '/' . $prizeSrc, 108, 100, 90, 0, '', '');
+                     $pdf->Image(TL_ROOT . '/' . $prizeSrc, 125, 90, 75, 0, '', '');
               }
 
               //valid until
@@ -143,20 +158,7 @@ class GenerateCertificate extends Controller
               $pdf->SetFont('Arial', '', 12);
               $pdf->Cell(190, 8, date('d.m.Y', $objCode->validUntil), '', '', 'L');
 
-              // generate Barcode code128
-              $tmp_filename_barcode = 'system/tmp/' . md5(time()) . '.png';
-              $this->generateBarcode(TL_ROOT . '/' . $tmp_filename_barcode, $strCodeDecoded, 'code128');
-              //check if tmp-dir is writable
-              if (!is_file(TL_ROOT . '/' . $tmp_filename_barcode))
-              {
-                     $error_message = 'Probably the system/tmp directory is not writable. Error in ' . __FILE__ . ' on ' . __LINE__ . ' at ' . __METHOD__ . '()';
-                     $this->log('Probably the system/tmp directory is not writable. Error in ' . __FILE__ . ' on ' . __LINE__ . ' at ' . __METHOD__ . '()', __METHOD__, TL_ERROR);
-                     die($error_message);
-              }
-
-              $pdf->Image(TL_ROOT . '/' . $tmp_filename_barcode, 10, 260, 0, 0, '', '');
-              $objFile = new File($tmp_filename_barcode);
-              $objFile->delete();
+              
 
               /*
               // generate Barcode QR

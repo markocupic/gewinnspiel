@@ -105,7 +105,7 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
        {
               $this->loadLanguageFile('gewinnspiel');
               $this->Template->status = $this->status;
-              $this->Template->userData = $this->userData ? $this->userData : array();
+              $this->Template->userData = count($this->userData) ? $this->userData : array();
               switch ($this->status) {
                      case 'gewonnen':
                             $this->registerUser();
@@ -113,6 +113,8 @@ class ModuleGewinnspielTeilnehmer extends ModuleGewinnspiel
                             $this->sendConfirmationEmail();
                             $this->sendAdminEmailNotification();
                             $prizeSrc = $this->prizeImagesFolder . '/preis_' . $this->userData['prizeGroup'] . '.jpg';
+                            // overwrite userData
+                            $this->Template->userData = count($this->userData) ? $this->userData : array();
                             $this->Template->srcPrizeImage = file_exists(TL_ROOT . '/' . $prizeSrc) ? $prizeSrc : '';
                             break;
                      case 'show_certificate_form':
