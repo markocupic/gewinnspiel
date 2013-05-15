@@ -102,15 +102,18 @@
 <!-- Im Produktivmodus auskommentieren -->
 <!-- Im Produktivmodus auskommentieren -->
 <!-- Im Produktivmodus auskommentieren -->
-<p><strong>status: </strong><?php echo $this->status; ?></p>
-<?php foreach ($this->userData as $key => $value): ?>
-<p><strong><?php echo $key; ?>: </strong><?php echo $value; ?></p>
-<?php endforeach; ?>
+<?php
+/**
+echo '<h3>Debug-Informationen</h3>';
+echo '<p><strong>status: </strong>' . $this->status . '</p>';
+foreach ($this->userData as $key => $value)
+{
+       echo '<p><strong>' . $key . ': </strong>' . $value . '</p>';
+}
+**/
+?>
 <!-- ****** ---------------------- -->
 <!-- ****** ---------------------- -->
 <!-- ****** ---------------------- -->
 <!-- ****** ---------------------- -->
-
-
-
 <!-- indexer::continue -->

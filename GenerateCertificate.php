@@ -69,11 +69,11 @@ class GenerateCertificate extends Controller
               $pdf->SetFillColor(255, 255, 255);
 
               // title
-              $pdf->Cell(190, 8, utf8_decode("Gewinnbestätigung"), 'B', '', 'L');
+              $pdf->Cell(190, 8, utf8_decode("Gewinnzertifikat"), 'B', '', 'L');
               $pdf->Ln();
               $pdf->Ln();
 
-              // add prize image
+              // add banner in the head
               $headerLogo = $objModule->prizeImagesFolder . '/certificate_banner.jpg';
               if (file_exists(TL_ROOT . '/' . $headerLogo))
               {
@@ -150,7 +150,7 @@ class GenerateCertificate extends Controller
               $prizeSrc = $objModule->prizeImagesFolder . '/preis_' . $objCode->prizeGroup . '.jpg';
               if (file_exists(TL_ROOT . '/' . $prizeSrc))
               {
-                     $pdf->Image(TL_ROOT . '/' . $prizeSrc, 125, 90, 75, 0, '', '');
+                     $pdf->Image(TL_ROOT . '/' . $prizeSrc, 135, 90, 65, 0, '', '');
               }
 
               //valid until
