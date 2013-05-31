@@ -13,7 +13,7 @@
 CREATE TABLE `tl_gewinnspiel_codes` (
   `id` int(10) unsigned NOT NULL auto_increment,
   `tstamp` varchar(10) NOT NULL default '',
-  `code` varchar(128) NOT NULL default '',
+  `code` varchar(32) NOT NULL default '',
   `crypt` char(1) NOT NULL default '',
   `token` varchar(128) NOT NULL default '',
   `prizeGroup` int(10) unsigned NOT NULL default '0',
