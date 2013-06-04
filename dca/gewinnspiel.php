@@ -30,31 +30,31 @@ $GLOBALS['TL_DCA']['gewinnspiel'] = array(
                      'reference' => &$GLOBALS['TL_LANG']['gewinnspiel'],
                      'inputType' => 'radioButton',
                      'options' => array('male', 'female'),
-                     'eval' => array('class' => 'block', 'mandatory' => true, 'required' => true)
+                     'eval' => array('class' => 'block input_gender', 'mandatory' => true, 'required' => true)
               ),
               'firstname' => array
               (
                      'label' => &$GLOBALS['TL_LANG']['gewinnspiel']['firstname'],
                      'inputType' => 'textField',
-                     'eval' => array('class' => 'block', 'required' => true, 'rgxp' => 'alpha')
+                     'eval' => array('class' => 'block input_firstname', 'required' => true, 'rgxp' => 'alpha')
               ),
               'lastname' => array
               (
                      'label' => &$GLOBALS['TL_LANG']['gewinnspiel']['lastname'],
                      'inputType' => 'textField',
-                     'eval' => array('class' => 'block', 'required' => true, 'rgxp' => 'alpha')
+                     'eval' => array('class' => 'block input_lastname', 'required' => true, 'rgxp' => 'alpha')
               ),
               'email' => array
               (
                      'label' => &$GLOBALS['TL_LANG']['gewinnspiel']['email'],
                      'inputType' => 'textField',
-                     'eval' => array('class' => 'block', 'required' => true, 'rgxp' => 'email')
+                     'eval' => array('class' => 'block input_email', 'required' => true, 'rgxp' => 'email')
               ),
               'code' => array
               (
                      'label' => &$GLOBALS['TL_LANG']['gewinnspiel']['code'],
                      'inputType' => 'textField',
-                     'eval' => array('class' => 'block', 'required' => true, 'rgxp' => 'alnum')
+                     'eval' => array('class' => 'block input_code', 'required' => true, 'rgxp' => 'alnum')
               ),
               'agb' => array
               (
@@ -63,13 +63,13 @@ $GLOBALS['TL_DCA']['gewinnspiel'] = array(
                      'reference' => &$GLOBALS['TL_LANG']['gewinnspiel'],
                      'value' => 'yes',
                      'options' => array('yes'),
-                     'eval' => array('class' => 'block', 'mandatory' => true, 'required' => true)
+                     'eval' => array('class' => 'block input_agb', 'mandatory' => true, 'required' => true)
               ),
               'captcha' => array
               (
                      'label' => &$GLOBALS['TL_LANG']['gewinnspiel']['captcha'],
                      'inputType' => 'captcha',
-                     'eval' => array('class' => 'block')
+                     'eval' => array('class input_captcha' => 'block')
               ),
        )
 );
