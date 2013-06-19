@@ -26,7 +26,6 @@
  * @package    Gewinnspiel
  * @filesource
  */
-
 // fields
 $GLOBALS['TL_LANG']['gewinnspiel']['gender'] = 'Anrede';
 $GLOBALS['TL_LANG']['gewinnspiel']['firstname'] = 'Ihr Vorname:';
@@ -35,17 +34,17 @@ $GLOBALS['TL_LANG']['gewinnspiel']['email'] = 'E-Mail:';
 $GLOBALS['TL_LANG']['gewinnspiel']['code'] = 'Ihr Gewinncode:';
 $GLOBALS['TL_LANG']['gewinnspiel']['code_2'] = 'Gewinncode:';
 $GLOBALS['TL_LANG']['gewinnspiel']['captcha'] = 'Sicherheitsfrage';
-$GLOBALS['TL_LANG']['gewinnspiel']['agb'] = 'Ich bin mit den Teilnahmebedingungen einverstanden.';
+$GLOBALS['TL_LANG']['gewinnspiel']['agb'] = 'Ich bin mit den <a data-lightbox="" href="teilnahmebedingungen">Teilnahmebedingungen</a> einverstanden.';
 $GLOBALS['TL_LANG']['gewinnspiel']['yes'] = 'ja';
 
 // add errors
 $GLOBALS['TL_LANG']['gewinnspiel']['error_agb'] = 'Bitte bestätigen Sie die Teilnahmebedingungen.';
 $GLOBALS['TL_LANG']['gewinnspiel']['error_gender'] = 'Bitte geben Sie Ihre Anrede an.';
-$GLOBALS['TL_LANG']['gewinnspiel']['kein_gewinn'] = 'Leider kein Gewinncode. Wollen Sie es nochmals probieren?';
+$GLOBALS['TL_LANG']['gewinnspiel']['kein_gewinn'] = 'Der eingegeben Code ist leider kein Gewinncode. Wollen Sie es nochmals probieren?';
 $GLOBALS['TL_LANG']['gewinnspiel']['code_bereits_eingeloest'] = 'Dieser Code wurde bereits einmal von einem Teilnehmer verwendet und ist ungültig. Wollen Sie es nochmals probieren?';
 $GLOBALS['TL_LANG']['gewinnspiel']['token_invalid_code'] = 'Code ungültig. Bitte probieren Sie es nochmals.';
 $GLOBALS['TL_LANG']['gewinnspiel']['token_gewinn_bereits_ausbezahlt'] = 'Dieser Gewinn wurde bereits ausbezahlt. Das Zertifikat kann nicht mehr bezogen werden.';
-
+$GLOBALS['TL_LANG']['gewinnspiel']['mandatory'] = 'Bitte füllen Sie das Pflichtfeld aus.';
 
 
 
