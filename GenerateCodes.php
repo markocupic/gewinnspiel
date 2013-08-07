@@ -98,11 +98,16 @@ class GenerateCodes extends BackendModule
                             $m++;
                             do
                             {
+                                   $arrLetters = range('f', 'z');
                                    $code = $prefix . substr(sha1(rand(100000000, 9999999999) . md5(microtime())), 0, $length);
+                                   // replace 'e' and 'E' with a random letter -> avoid scientific notation in ms excel
+                                   $code = str_replace(array('e','E'), $arrLetters[rand(0,15)], $code);
+                                   // make sure that the code contains at least 1 letter
+                                   $code = preg_replace('/[0-9]{1}$/', $arrLetters[rand(0,15)], $code);
                             } while (in_array($code, $arrCodes));
                             $arrCodes[] = $code;
                             $set = array(
-                                   'code' => $code,
+                                   'code' => (string)$code,
                                    'prizeGroup' => $m
                             );
                             $this->Database->prepare('INSERT INTO tl_gewinnspiel_codes %s')->set($set)->executeUncached();
